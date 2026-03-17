@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>皮秒雷射術後關鍵保養168｜CosKeeper</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background: #f8f9fc;
+      color: #1a1a2e;
+      line-height: 1.7;
+    }
+
+    /* ── Color Variables ── */
+    :root {
+      --primary:    #809BFF;
+      --primary-dk: #5a7af0;
+      --primary-lt: #C6D3FF;
+      --green:      #8CDD2D;
+      --green-dk:   #6ab820;
+      --red:        #FF5A7A;
+      --red-lt:     #FFE8ED;
+      --white:      #ffffff;
+      --grey-100:   #f3f5fb;
+      --grey-200:   #e8ecf6;
+      --grey-500:   #8a8fa8;
+      --text:       #1a1a2e;
+      --text-muted: #5a5f7a;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 { font-weight: 700; line-height: 1.3; }
+
+    /* ── Layout ── */
+    .container { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+
+    /* ───────────────────────────
+       HERO
+    ─────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #1a1f4e 0%, #3a4aaa 50%, #809BFF 100%);
+      color: var(--white);
+      padding: 72px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: rgba(140,221,45,0.12);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 240px; height: 240px;
+      background: rgba(198,211,255,0.15);
+      border-radius: 50%;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(140,221,45,0.25);
+      color: #c9ff72;
+      border: 1px solid rgba(140,221,45,0.5);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 5px 16px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 span { color: #c9ff72; }
+    .hero .sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-pills span {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 14px;
+    }
+
+    /* ── Intro strip ── */
+    .intro-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 36px 20px;
+    }
+    .intro-strip .container { display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-start; }
+    .intro-block { flex: 1; min-width: 220px; }
+    .intro-block .icon-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .intro-block .icon-box {
+      width: 36px; height: 36px;
+      background: var(--primary-lt);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .intro-block .icon-row h3 { font-size: 14px; color: var(--primary-dk); }
+    .intro-block p { font-size: 14px; color: var(--text-muted); }
+
+    /* ── Section header ── */
+    .section-header {
+      text-align: center;
+      padding: 56px 20px 32px;
+    }
+    .section-header .tag {
+      display: inline-block;
+      background: var(--primary-lt);
+      color: var(--primary-dk);
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 14px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .section-header h2 { font-size: clamp(22px, 4vw, 32px); color: var(--text); }
+    .section-header p { font-size: 15px; color: var(--text-muted); margin-top: 8px; }
+
+    /* ───────────────────────────
+       TIMELINE DAYS
+    ─────────────────────────── */
+    .timeline { padding: 0 20px 60px; }
+    .day-card {
+      background: var(--white);
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 16px rgba(128,155,255,0.10);
+      overflow: hidden;
+      border: 1px solid var(--grey-200);
+      transition: box-shadow 0.25s;
+    }
+    .day-card:hover { box-shadow: 0 6px 32px rgba(128,155,255,0.20); }
+
+    .day-header {
+      display: flex;
+      align-items: stretch;
+      background: linear-gradient(90deg, var(--primary) 0%, #a0b4ff 100%);
+      color: var(--white);
+      padding: 0;
+    }
+    .day-number {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 88px;
+      padding: 20px 16px;
+      background: rgba(0,0,0,0.15);
+    }
+    .day-number .label { font-size: 11px; letter-spacing: 0.12em; opacity: 0.8; }
+    .day-number .num { font-size: 42px; font-weight: 900; line-height: 1; }
+    .day-header-text {
+      padding: 20px 24px;
+      flex: 1;
+    }
+    .day-header-text .phase {
+      font-size: 11px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 2px 10px;
+      display: inline-block;
+      margin-bottom: 6px;
+      letter-spacing: 0.08em;
+    }
+    .day-header-text h3 { font-size: 18px; margin-bottom: 4px; }
+    .day-header-text .summary { font-size: 13px; opacity: 0.88; }
+
+    /* status panel */
+    .status-panel {
+      background: var(--grey-100);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 18px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .status-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .status-content { flex: 1; }
+    .status-content .st-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--primary-dk); text-transform: uppercase; margin-bottom: 4px; }
+    .status-content p { font-size: 14px; color: var(--text); }
+
+    /* action panel */
+    .action-panel {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    .panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .panel-title::before { content: ''; display: block; width: 3px; height: 14px; background: var(--primary); border-radius: 2px; }
+    .action-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .action-list li {
+      font-size: 14px;
+      padding: 8px 12px;
+      background: var(--grey-100);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .action-list li .a-icon { flex-shrink: 0; }
+
+    /* ingredients panel */
+    .ingredients-panel {
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 560px) { .ingredients-panel { grid-template-columns: 1fr; } }
+
+    .ing-block { }
+    .ing-block .ing-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 8px 8px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ing-block.good .ing-title { background: var(--green); color: #1a3a00; }
+    .ing-block.bad  .ing-title { background: var(--red); color: var(--white); }
+    .ing-list {
+      list-style: none;
+      border: 1px solid var(--grey-200);
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+    .ing-list li {
+      font-size: 13px;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--grey-200);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ing-list li:last-child { border-bottom: none; }
+    .ing-list li strong { font-size: 13px; color: var(--text); }
+    .ing-list li span { font-size: 11px; color: var(--text-muted); }
+    .ing-block.good .ing-list li { background: #f5fff0; }
+    .ing-block.bad  .ing-list li { background: var(--red-lt); }
+
+    /* ───────────────────────────
+       PHASE INDICATOR (decorative divider)
+    ─────────────────────────── */
+    .phase-divider {
+      text-align: center;
+      padding: 8px 0 20px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .phase-divider::before, .phase-divider::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--primary-lt);
+    }
+
+    /* ───────────────────────────
+       QUICK REFERENCE TABLE
+    ─────────────────────────── */
+    .quick-ref {
+      background: var(--white);
+      padding: 56px 20px;
+      border-top: 1px solid var(--grey-200);
+    }
+    .table-wrapper { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 24px;
+    }
+    thead tr { background: var(--primary); color: var(--white); }
+    thead th { padding: 12px 14px; text-align: left; font-weight: 700; font-size: 12px; letter-spacing: 0.06em; }
+    tbody tr:nth-child(odd) { background: var(--grey-100); }
+    tbody tr:nth-child(even) { background: var(--white); }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid var(--grey-200); vertical-align: top; }
+    tbody td:first-child { font-weight: 700; color: var(--primary-dk); white-space: nowrap; }
+    .tag-good {
+      display: inline-block;
+      background: #e9ffe0;
+      color: var(--green-dk);
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 1px 6px;
+      margin: 1px 2px;
+    }
+    .tag-bad {
+      display: inline-block;
+      background: var(--red-lt);
+      color: #c0003a;
+      border-radius: 4px;
+      font-size: 11px;
+      padding: 1px 6px;
+      margin: 1px 2px;
+    }
+
+    /* ───────────────────────────
+       CTA SECTION
+    ─────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, #1a1f4e 0%, #2e3da8 60%, #809BFF 100%);
+      color: var(--white);
+      padding: 80px 20px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 400px; height: 400px;
+      background: rgba(140,221,45,0.10);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 300px; height: 300px;
+      background: rgba(198,211,255,0.12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(140,221,45,0.2);
+      border: 1px solid rgba(140,221,45,0.5);
+      color: #c9ff72;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 16px;
+      margin-bottom: 24px;
+    }
+    .cta-title {
+      font-size: clamp(24px, 4.5vw, 38px);
+      margin-bottom: 16px;
+    }
+    .cta-title span { color: #c9ff72; }
+    .cta-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.82);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    /* Value props */
+    .cta-props {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .cta-prop {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      padding: 20px 24px;
+      max-width: 220px;
+      text-align: left;
+    }
+    .cta-prop .prop-icon { font-size: 28px; margin-bottom: 10px; }
+    .cta-prop h4 { font-size: 15px; margin-bottom: 6px; }
+    .cta-prop p { font-size: 12px; color: rgba(255,255,255,0.72); }
+
+    /* Urgency bar */
+    .urgency-bar {
+      background: rgba(140,221,45,0.15);
+      border: 1px solid rgba(140,221,45,0.35);
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-size: 14px;
+      color: #c9ff72;
+      margin-bottom: 32px;
+      display: inline-block;
+    }
+    .urgency-bar strong { color: var(--white); }
+
+    /* CTA button */
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--green) 0%, #a2f040 100%);
+      color: #1a3a00;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 18px 52px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(140,221,45,0.40);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(140,221,45,0.55);
+    }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 16px; }
+
+    /* ── Footer ── */
+    footer {
+      background: #0e1235;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 12px;
+    }
+    footer span { color: var(--primary-lt); }
+
+    /* ── Scroll progress ── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--green));
+      z-index: 999;
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* ── Sticky nav ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--grey-200);
+      z-index: 100;
+      padding: 10px 20px;
+    }
+    .sticky-nav .nav-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; }
+    .nav-logo .logo-box {
+      width: 28px; height: 28px;
+      background: var(--primary);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+    }
+    .nav-logo span { font-size: 14px; font-weight: 700; color: var(--primary-dk); }
+    .nav-days {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-days a {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--grey-100);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-days a:hover { background: var(--primary); color: var(--white); }
+    .nav-cta-mini {
+      background: var(--primary);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-cta-mini:hover { background: var(--primary-dk); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .nav-days { display: none; }
+      .day-number { min-width: 68px; }
+      .day-number .num { font-size: 32px; }
+      .day-header-text h3 { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- ── Sticky Nav ── -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-box">🔬</div>
+      <span>CosKeeper 術後168</span>
+    </div>
+    <div class="nav-days">
+      <a href="#day1">1</a><a href="#day2">2</a><a href="#day3">3</a>
+      <a href="#day4">4</a><a href="#day5">5</a><a href="#day6">6</a><a href="#day7">7</a>
+    </div>
+    <a href="#cta" class="nav-cta-mini">化妝台健檢 →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="badge">✦ CosKeeper 醫美術後關鍵保養</div>
+  <h1>皮秒雷射<br><span>術後關鍵保養 168</span></h1>
+  <p class="sub">7 天 × 24 小時全程指引——了解你的肌膚正在發生什麼，用對成分讓療效最大化</p>
+  <div class="hero-pills">
+    <span>📅 術後第 1–7 天</span>
+    <span>🧬 每日成分解析</span>
+    <span>⚠️ 踩雷避免清單</span>
+    <span>✅ 醫療級保養邏輯</span>
+  </div>
+</header>
+
+<!-- ── Intro Strip ── -->
+<section class="intro-strip">
+  <div class="container">
+    <div class="intro-block">
+      <div class="icon-row">
+        <div class="icon-box">⚡</div>
+        <h3>什麼是皮秒雷射？</h3>
+      </div>
+      <p>皮秒雷射以超短脈衝（兆分之一秒）精準擊碎黑色素與色素顆粒，同時刺激膠原再生。因為熱傷害極低，恢復期比傳統雷射快，但術後屏障仍需特別呵護。</p>
+    </div>
+    <div class="intro-block">
+      <div class="icon-row">
+        <div class="icon-box">📋</div>
+        <h3>為什麼是「168」？</h3>
+      </div>
+      <p>術後 7 天（168 小時）是皮膚屏障重建的關鍵窗口。這段期間的保養決策，直接影響療效的好壞、反黑風險，以及是否出現敏感、痘痘等副作用。</p>
+    </div>
+    <div class="intro-block">
+      <div class="icon-row">
+        <div class="icon-box">🎯</div>
+        <h3>如何使用這份指南？</h3>
+      </div>
+      <p>每天對應當天的卡片，檢視膚況說明，照著推薦行動做，核對成分清單。有疑問的產品，可以用「化妝台健檢」服務請 CosKeeper 幫你即時判讀。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section Header ── -->
+<div class="section-header">
+  <div class="tag">7-Day Recovery Timeline</div>
+  <h2>術後七日完整保養對照</h2>
+  <p>根據皮膚恢復生理機制制定，每日行動均有成分科學依據</p>
+</div>
+
+<!-- ───────────────────────────
+     TIMELINE
+─────────────────────────── -->
+<section class="timeline">
+  <div class="container">
+
+    <!-- ═══ DAY 1 ═══ -->
+    <div class="day-card" id="day1">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">01</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🔴 急性期</span>
+          <h3>最脆弱的24小時——屏障歸零，全力安撫</h3>
+          <p class="summary">不是保養的時機，是「不傷害」的時機</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>明顯發紅、灼熱感、輕微腫脹，治療點可能出現針尖大小的痂點前期。皮膚屏障幾乎全面受損，對任何刺激都極度敏感，油脂分泌暫時停滯，皮膚自我保護機制尚未啟動。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">💧</span>以冷水或微溫水（≤35°C）輕拍清潔，禁止使用洗面刷或搓揉動作</li>
+          <li><span class="a-icon">🌡️</span>施打後立即冰敷（乾淨紗布包冰）10–15 分鐘，降低腫熱感；避免濕毛巾直接接觸</li>
+          <li><span class="a-icon">🧴</span>輕拍醫美診所開立的修護噴劑或生長因子安瓶，待微乾後薄敷修護霜</li>
+          <li><span class="a-icon">🚫</span>今日<strong>禁止化妝</strong>（包含氣墊粉底、隔離霜），讓皮膚自由呼吸</li>
+          <li><span class="a-icon">☀️</span>外出以<strong>物理遮擋</strong>為主（帽子、傘、口罩），避免防曬乳刺激未癒皮膚</li>
+          <li><span class="a-icon">🍵</span>多補充水份；室內保持濕度 50–60%，降低皮膚失水速率</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>玻尿酸 Hyaluronic Acid</strong><span>多分子量補水，不刺激，鎖住水份防止失水</span></li>
+            <li><strong>積雪草苷 Madecassoside</strong><span>積雪草的活性成分，快速抗炎、促傷口癒合</span></li>
+            <li><strong>泛醇（維生素 B5）Panthenol</strong><span>轉化成泛酸後加速上皮再生，舒緩紅熱</span></li>
+            <li><strong>蘆薈萃取 Aloe Vera Extract</strong><span>鎮定清涼，短期緩解灼熱，但避免含酒精配方</span></li>
+            <li><strong>神經醯胺 Ceramides（NP, AP, EOP）</strong><span>修補受損屏障的關鍵磚塊</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 絕對避開成分</div>
+          <ul class="ing-list">
+            <li><strong>視黃醇 / A酸（Retinol, Tretinoin）</strong><span>加速細胞代謝→灼傷、敏感、色沉加劇</span></li>
+            <li><strong>果酸（AHA：甘醇酸、杏仁酸、乳酸）</strong><span>pH值低，破壞已受損屏障</span></li>
+            <li><strong>水楊酸 BHA</strong><span>脂溶性滲透力強，刺激發炎皮膚</span></li>
+            <li><strong>酒精 Alcohol (Ethanol, SD Alcohol)</strong><span>揮發時造成脫水，加重紅腫</span></li>
+            <li><strong>香精 / 人工香料 Fragrance</strong><span>低分子香氣成分為常見過敏原</span></li>
+            <li><strong>高濃度維C（L-抗壞血酸原型 ≥5%）</strong><span>低pH環境刺激破損皮膚</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">繼續恢復中</div>
+
+    <!-- ═══ DAY 2 ═══ -->
+    <div class="day-card" id="day2">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">02</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟠 初期恢復</span>
+          <h3>細小痂皮登場——「別動它」是最好的保養</h3>
+          <p class="summary">發紅略退，但痂點開始形成，皮膚緊繃明顯</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>整體紅腫開始消退，但治療點位置浮現細小褐色或暗色點狀痂皮（俗稱「芝麻點」前期）。皮膚緊繃感明顯，可能出現局部乾燥脫屑。這是正常的皮膚修復過程，不代表受感染。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🧼</span>溫和洗面乳輕柔清潔，水溫控制在 35°C 以下，以手掌輕揉（非毛巾搓臉）</li>
+          <li><span class="a-icon">🛑</span><strong>嚴禁用手摳、撕、抓</strong>任何痂點——強行移除導致色沉機率大幅提升</li>
+          <li><span class="a-icon">💧</span>敷保濕面膜（成分以玻尿酸、積雪草為主）10–15 分鐘，補充水份</li>
+          <li><span class="a-icon">🧴</span>取適量修護霜，避開眼周，以指腹輕壓（非塗抹）全臉保濕</li>
+          <li><span class="a-icon">☀️</span>如需外出，可用輕薄物理性防曬（氧化鋅配方），SPF 30 即可，輕輕點塗</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>玻尿酸 Hyaluronic Acid</strong><span>持續補水，維持傷口濕潤環境加速癒合</span></li>
+            <li><strong>積雪草苷 / 馬德卡素 Madecassoside</strong><span>抑制發炎因子，縮短紅腫期</span></li>
+            <li><strong>神經醯胺 Ceramides</strong><span>修復屏障，減少經皮水份散失（TEWL）</span></li>
+            <li><strong>泛醇 B5 Panthenol</strong><span>持續促進上皮再生，舒緩緊繃</span></li>
+            <li><strong>甘露醇 Mannitol</strong><span>自由基清除劑，降低雷射後氧化壓力</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 絕對避開成分</div>
+          <ul class="ing-list">
+            <li><strong>視黃醇 Retinol / A醇 A酸</strong><span>全系列禁用，痂皮形成期使用必然加劇刺激</span></li>
+            <li><strong>果酸 AHA 全系列</strong><span>甘醇酸、杏仁酸、乳酸、苦杏仁酸均禁</span></li>
+            <li><strong>任何去角質成分</strong><span>磨砂顆粒、酵素類、PHA 均不適合</span></li>
+            <li><strong>酒精 / 薄荷 / 樟腦</strong><span>清涼感成分＝皮膚刺激，不要被清爽感騙</span></li>
+            <li><strong>高濃度煙醯胺（≥10%）</strong><span>目前皮膚過敏中，先暫緩；低於 5% 可評估</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">進入關鍵結痂期</div>
+
+    <!-- ═══ DAY 3 ═══ -->
+    <div class="day-card" id="day3">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">03</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟠 結痂高峰</span>
+          <h3>芝麻點全面浮現——癢了也不能抓</h3>
+          <p class="summary">痂皮最密集的一天，皮膚可能有搔癢感</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>治療區域可見明顯的芝麻粒大小褐色點狀痂皮（深色系斑點膚況者顏色可能更深），部分區域出現細小脫屑。皮膚可能出現搔癢感，這是神經末梢修復的正常信號，並非感染。若有劇烈搔癢或大面積滲液，請聯繫施作診所。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🌊</span>清潔維持低刺激，可輕搭胺基酸潔面乳，起泡後讓泡沫接觸皮膚，不搓揉</li>
+          <li><span class="a-icon">💧</span>加強保濕頻率，白天 2 次、晚上睡前 1 次，主要補充油脂封鎖水份</li>
+          <li><span class="a-icon">❄️</span>若搔癢難耐，可用<strong>冷毛巾輕敷</strong>或噴舒緩噴霧，切勿抓癢</li>
+          <li><span class="a-icon">🌡️</span>避免三溫暖、蒸臉、熱水澡，熱氣會加劇血管擴張，延長紅熱期</li>
+          <li><span class="a-icon">🏃</span>避免大量流汗運動，汗水的鹽分對受損皮膚是刺激物</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>神經醯胺 Ceramides（多型複合）</strong><span>加強屏障密封，減少水份流失至最低</span></li>
+            <li><strong>角鯊烷 Squalane</strong><span>仿人體皮脂，超溫和封油，不阻塞毛孔</span></li>
+            <li><strong>β-葡聚糖 Beta-Glucan</strong><span>重量比玻尿酸更強的補水力，同時舒緩免疫反應</span></li>
+            <li><strong>玻尿酸 Hyaluronic Acid</strong><span>多分子量持續補水，維持傷口濕潤</span></li>
+            <li><strong>甜菜鹼 Betaine</strong><span>天然滲透壓調節劑，溫和保水不刺激</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 絕對避開成分</div>
+          <ul class="ing-list">
+            <li><strong>磨砂去角質 Physical Scrub</strong><span>任何顆粒摩擦＝強制移除痂皮＝留疤色沉</span></li>
+            <li><strong>化學去角質 Chemical Exfoliant</strong><span>PHA、AHA、BHA 全禁；酵素去角質亦禁</span></li>
+            <li><strong>A醇 / A酸全系列 Retinoids</strong><span>持續禁用，屏障未修復前作用不可預測</span></li>
+            <li><strong>高刺激精華油（含香精者）</strong><span>純植物油（玫瑰果油等）可，但含香精精油絕禁</span></li>
+            <li><strong>熱水 / 蒸臉水氣</strong><span>非「成分」但同等重要：熱能是此期最大敵人</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">開始看見改變</div>
+
+    <!-- ═══ DAY 4 ═══ -->
+    <div class="day-card" id="day4">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">04</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟡 脫痂初期</span>
+          <h3>痂皮開始自然剝落——讓它走，別阻止它</h3>
+          <p class="summary">新生肌膚陸續現身，粉嫩但極脆弱</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>部分痂皮開始自然脫落（特別是臉部中央動態區域），露出下方略帶粉紅、光滑的新生皮膚。殘留痂皮仍附著在其他部位。皮膚整體乾燥脫屑增加，但紅腫感持續消退中。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🧴</span>加入含油份的修護霜，在新生肌膚上形成保護膜，鎖住水份的同時軟化殘餘痂皮</li>
+          <li><span class="a-icon">🚿</span>洗臉時讓水自然流過，殘餘痂皮若自然脫落才是正確時機；不要主動搓除</li>
+          <li><span class="a-icon">🛡️</span>新生粉紅膚色區域對紫外線超敏感，外出<strong>物理防曬絕對不能省</strong>，SPF 30+ 輕點補塗</li>
+          <li><span class="a-icon">💆</span>晚上可以使用保濕面膜（免沖洗型），深度滋潤過夜</li>
+          <li><span class="a-icon">📵</span>不要直接拍打刺激（包含熱毛巾熱敷），此時機械力道即為刺激</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>角鯊烷 Squalane</strong><span>親膚性強的封鎖油脂，軟化殘餘痂皮不刺激</span></li>
+            <li><strong>神經醯胺 Ceramides</strong><span>主力屏障修復材料，此時最需要持續補充</span></li>
+            <li><strong>玻尿酸 Hyaluronic Acid</strong><span>新生肌膚保水力低，玻尿酸先補底層水</span></li>
+            <li><strong>胜肽 Peptides（如 Palmitoyl Tripeptide-1）</strong><span>向纖維母細胞傳訊，預啟動膠原合成</span></li>
+            <li><strong>低濃度尿素 Urea（≤5%）</strong><span>天然保濕因子成分，幫助乾燥皮膚補水，超低刺激</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 絕對避開成分</div>
+          <ul class="ing-list">
+            <li><strong>A酸 / A醇全系列 Retinoids</strong><span>新生皮膚代謝速率正在重啟，A酸此時過於激進</span></li>
+            <li><strong>高濃度果酸 AHA（≥5%）</strong><span>仍有未脫落痂皮，酸類會造成不均勻刺激</span></li>
+            <li><strong>深層清潔成分（硫磺、黏土）</strong><span>吸油過度，剝奪新生皮膚需要的天然油脂</span></li>
+            <li><strong>化學性防曬成分（Oxybenzone 等）</strong><span>部分成分有滲透刺激風險，此期建議純物理防曬</span></li>
+            <li><strong>高濃度維C原型（≥10%）</strong><span>低 pH 環境不適合新生脆弱肌膚</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">接近終點線</div>
+
+    <!-- ═══ DAY 5 ═══ -->
+    <div class="day-card" id="day5">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">05</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟡 新生過渡</span>
+          <h3>大部分痂皮脫落——新肌初現，敏感依然</h3>
+          <p class="summary">可以稍微「加料」，但別急著恢復原本保養流程</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>大部分治療點痂皮已自然脫落，整體膚色明顯恢復。新生皮膚可能呈現淺粉紅色，局部有光亮感。仍有少數頑固痂皮殘留，持續等待自然剝落。皮膚對溫度、壓力等仍比平時敏感。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🧴</span>保濕重心可從厚重修護霜轉向「輕薄+補水」的乳液質地，符合皮膚透氣需求</li>
+          <li><span class="a-icon">☀️</span>物理防曬維持每天，SPF 30 或以上；戶外時間長則 2–3 小時補塗一次</li>
+          <li><span class="a-icon">🌟</span>可以引入低濃度煙醯胺（3–5%）精華，先單點測試，觀察 24 小時無異常再全臉使用</li>
+          <li><span class="a-icon">🗓️</span>若有使用醫師開立的修護安瓶，可進入最後 2 支的使用階段</li>
+          <li><span class="a-icon">🪞</span>仍不建議化妝（特別是粉底液、蜜粉），若一定要，薄輕打底即可</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>煙醯胺 Niacinamide（3–5%）</strong><span>抑制黑色素轉移，術後反黑的最佳預防成分</span></li>
+            <li><strong>積雪草 Centella Asiatica</strong><span>持續抗炎，幫助膠原合成，進入正向修復</span></li>
+            <li><strong>玻尿酸 Hyaluronic Acid</strong><span>新生皮膚保濕力弱，持續補充</span></li>
+            <li><strong>神經醯胺 Ceramides</strong><span>屏障修復不可或缺，維持到皮膚完全穩定</span></li>
+            <li><strong>角鯊烷 Squalane</strong><span>輕薄封鎖油脂，不影響透氣感</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 持續避開成分</div>
+          <ul class="ing-list">
+            <li><strong>A醇 / A酸全系列 Retinoids</strong><span>至少等到第 14 天後才考慮重新引入</span></li>
+            <li><strong>高濃度果酸（≥5%）</strong><span>低濃度（2–3%）可在第 7 天後嘗試，現在仍等待</span></li>
+            <li><strong>物理去角質（磨砂膏）</strong><span>新生皮膚機械阻力低，物理摩擦必傷</span></li>
+            <li><strong>任何去角質方式</strong><span>皮膚自己知道何時脫屑，不需要協助「加速」</span></li>
+            <li><strong>化學性防曬過厚塗抹</strong><span>薄薄的物理防曬即可；化學防曬仍建議推遲</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">最後衝刺</div>
+
+    <!-- ═══ DAY 6 ═══ -->
+    <div class="day-card" id="day6">
+      <div class="day-header">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">06</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟢 穩定過渡</span>
+          <h3>外觀近乎正常——但內在屏障仍在重建</h3>
+          <p class="summary">可以重啟亮膚護理，但要循序漸進</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>皮膚外觀已基本恢復正常，可能仍有輕微粉紅或局部泛紅。整體敏感度明顯下降，但對紫外線、高溫的耐受力仍低於術前。部分人在此時已開始感受到膚色輕微提亮。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🔄</span>逐步恢復術前保養步驟：潔面→化妝水→精華→乳液→防曬，但仍避免刺激性活性成分</li>
+          <li><span class="a-icon">☀️</span>防曬升級至 SPF 50+，並確保每 2 小時補塗；這是術後黃金期，防反黑的關鍵</li>
+          <li><span class="a-icon">✨</span>可引入低刺激亮膚精華（傳明酸、溫和維C衍生物），開始鞏固皮秒療效</li>
+          <li><span class="a-icon">👁️</span>眼周產品可逐步恢復，選擇溫和無酒精配方</li>
+          <li><span class="a-icon">💄</span>必要情況下可薄妝，但<strong>卸妝要更輕柔徹底</strong>，避免摩擦</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>傳明酸 Tranexamic Acid</strong><span>阻斷黑色素生成訊號，比維C更溫和，此時引入最佳</span></li>
+            <li><strong>葡萄糖苷維C Ascorbyl Glucoside</strong><span>低刺激維C衍生物，緩慢釋放，適合術後亮膚</span></li>
+            <li><strong>煙醯胺 Niacinamide（5–10%）</strong><span>視耐受度提高濃度，加強防反黑效果</span></li>
+            <li><strong>甘草根萃取 Licorice Root Extract</strong><span>天然亮膚成分，舒緩抗炎同步進行</span></li>
+            <li><strong>物理防曬（氧化鋅 Zinc Oxide）</strong><span>廣效 UVA+UVB，不刺激肌膚，強力推薦</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 持續避開成分</div>
+          <ul class="ing-list">
+            <li><strong>A酸 Tretinoin / A醇 Retinol</strong><span>標準建議：雷射後至少 14–21 天後再重啟</span></li>
+            <li><strong>高濃度原型維C（≥15%）</strong><span>此時可試低濃度衍生物，原型仍建議等第 7 天後</span></li>
+            <li><strong>果酸換膚等療程</strong><span>皮秒後至少間隔 4 週，否則破壞仍在修復的屏障</span></li>
+            <li><strong>含光敏性成分之精油</strong><span>佛手柑、檸檬精油等會加劇術後光敏感</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-divider">完成168小時</div>
+
+    <!-- ═══ DAY 7 ═══ -->
+    <div class="day-card" id="day7">
+      <div class="day-header" style="background: linear-gradient(90deg, #3a7a00 0%, var(--green) 100%);">
+        <div class="day-number">
+          <span class="label">DAY</span>
+          <span class="num">07</span>
+        </div>
+        <div class="day-header-text">
+          <span class="phase">🟢 168 小時完成</span>
+          <h3>關鍵窗口收官——但好成效才正要開始</h3>
+          <p class="summary">初步感受到皮秒效果，維持保護讓療效延續</p>
+        </div>
+      </div>
+
+      <div class="status-panel">
+        <div class="status-icon">🩺</div>
+        <div class="status-content">
+          <div class="st-label">今日膚況</div>
+          <p>術後第七天，大多數人可以看見肌膚輕微提亮、斑點淡化初期效果、毛孔微縮的跡象。皮膚感覺近乎回到術前，但黑色素代謝和膠原重組的「底層工程」仍持續進行（可達術後 3 個月）。現在是鞏固效果的關鍵期，千萬不能鬆懈防曬。</p>
+        </div>
+      </div>
+
+      <div class="action-panel">
+        <div class="panel-title">今日保養行動</div>
+        <ul class="action-list">
+          <li><span class="a-icon">🎉</span>恭喜度過168小時！可以恢復大部分日常保養程序，但新引入的活性成分仍要循序漸進</li>
+          <li><span class="a-icon">☀️</span><strong>防曬至少維持術後 4–8 週 SPF 50+</strong>，這是決定最終亮膚成效的核心行為</li>
+          <li><span class="a-icon">💊</span>可開始加入抗氧化精華（穩定型維C、白藜蘆醇）搭配傳明酸，建立術後亮膚保養組合</li>
+          <li><span class="a-icon">📅</span>A醇重啟請再等 1–2 週，並從最低濃度（0.025–0.05%）、隔天一次開始</li>
+          <li><span class="a-icon">🔁</span>若有後續皮秒療程，請與醫師確認間隔時間（通常需 4–6 週以上）</li>
+        </ul>
+      </div>
+
+      <div class="ingredients-panel">
+        <div class="ing-block good">
+          <div class="ing-title">✅ 推薦成分</div>
+          <ul class="ing-list">
+            <li><strong>傳明酸 Tranexamic Acid</strong><span>持續使用 8–12 週，搭配皮秒療效最大化淡斑</span></li>
+            <li><strong>甘草黃酮 Licochalcone A / 甘草酸</strong><span>抗炎亮膚雙效，穩定術後膚色均勻度</span></li>
+            <li><strong>穩定型維C（AA2G, THDA）</strong><span>抗氧化＋亮膚＋促膠原，術後黃金搭檔</span></li>
+            <li><strong>胜肽複合物 Peptide Complex</strong><span>持續給予膠原合成訊號，延長皮秒新生效果</span></li>
+            <li><strong>氧化鋅 SPF 50+ 物理防曬</strong><span>每天日間最後一步，沒有任何保養可以取代</span></li>
+          </ul>
+        </div>
+        <div class="ing-block bad">
+          <div class="ing-title">❌ 本週後仍需謹慎成分</div>
+          <ul class="ing-list">
+            <li><strong>A酸（Tretinoin 處方強度）</strong><span>術後至少等 3–4 週，建議讓皮膚自行回穩後再引入</span></li>
+            <li><strong>高濃度 AHA 換膚</strong><span>果酸換膚、化學剝離等醫美療程需間隔 4–6 週</span></li>
+            <li><strong>其他雷射 / 光療療程</strong><span>皮秒後至少間隔 4 週；深層療程需 6–8 週</span></li>
+            <li><strong>戶外裸臉（無防曬）</strong><span>非「成分」，但是術後最大風險行為——絕對禁止</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</section>
+
+<!-- ───────────────────────────
+     QUICK REFERENCE TABLE
+─────────────────────────── -->
+<section class="quick-ref">
+  <div class="container">
+    <div class="section-header" style="padding-top: 0;">
+      <div class="tag">Quick Reference</div>
+      <h2>7天成分速查總表</h2>
+      <p>快速對照每日可用與禁用，保存截圖方便隨時查閱</p>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>核心膚況</th>
+            <th>推薦成分（摘要）</th>
+            <th>禁用成分（摘要）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Day 1</td>
+            <td>急性紅腫灼熱</td>
+            <td><span class="tag-good">玻尿酸</span><span class="tag-good">積雪草苷</span><span class="tag-good">B5</span><span class="tag-good">神經醯胺</span></td>
+            <td><span class="tag-bad">A酸</span><span class="tag-bad">果酸AHA</span><span class="tag-bad">水楊酸</span><span class="tag-bad">酒精</span><span class="tag-bad">香精</span></td>
+          </tr>
+          <tr>
+            <td>Day 2</td>
+            <td>痂皮形成中</td>
+            <td><span class="tag-good">玻尿酸</span><span class="tag-good">積雪草</span><span class="tag-good">神經醯胺</span><span class="tag-good">甘露醇</span></td>
+            <td><span class="tag-bad">A醇</span><span class="tag-bad">AHA全系列</span><span class="tag-bad">去角質</span><span class="tag-bad">薄荷</span></td>
+          </tr>
+          <tr>
+            <td>Day 3</td>
+            <td>芝麻點高峰、搔癢</td>
+            <td><span class="tag-good">神經醯胺</span><span class="tag-good">角鯊烷</span><span class="tag-good">β-葡聚糖</span><span class="tag-good">甜菜鹼</span></td>
+            <td><span class="tag-bad">磨砂</span><span class="tag-bad">酵素去角質</span><span class="tag-bad">A酸</span><span class="tag-bad">熱水/蒸臉</span></td>
+          </tr>
+          <tr>
+            <td>Day 4</td>
+            <td>脫痂初期、新肌顯現</td>
+            <td><span class="tag-good">角鯊烷</span><span class="tag-good">神經醯胺</span><span class="tag-good">胜肽</span><span class="tag-good">低濃度尿素</span></td>
+            <td><span class="tag-bad">A酸</span><span class="tag-bad">AHA≥5%</span><span class="tag-bad">深層清潔</span><span class="tag-bad">化學防曬</span></td>
+          </tr>
+          <tr>
+            <td>Day 5</td>
+            <td>大部分痂皮脫落</td>
+            <td><span class="tag-good">煙醯胺3-5%</span><span class="tag-good">積雪草</span><span class="tag-good">玻尿酸</span><span class="tag-good">神經醯胺</span></td>
+            <td><span class="tag-bad">A醇全系列</span><span class="tag-bad">果酸≥5%</span><span class="tag-bad">物理去角質</span></td>
+          </tr>
+          <tr>
+            <td>Day 6</td>
+            <td>外觀近正常，仍敏感</td>
+            <td><span class="tag-good">傳明酸</span><span class="tag-good">葡萄糖苷維C</span><span class="tag-good">煙醯胺5-10%</span><span class="tag-good">甘草萃取</span></td>
+            <td><span class="tag-bad">A酸</span><span class="tag-bad">高濃度維C</span><span class="tag-bad">光敏精油</span><span class="tag-bad">換膚療程</span></td>
+          </tr>
+          <tr>
+            <td>Day 7</td>
+            <td>168小時完成！</td>
+            <td><span class="tag-good">傳明酸</span><span class="tag-good">穩定型維C</span><span class="tag-good">胜肽複合物</span><span class="tag-good">SPF50+</span></td>
+            <td><span class="tag-bad">A酸(再等1-2週)</span><span class="tag-bad">高濃度換膚</span><span class="tag-bad">裸臉外出</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────
+     CTA SECTION
+─────────────────────────── -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="cta-inner">
+
+      <div class="cta-badge">✦ CosKeeper 升級服務</div>
+
+      <h2 class="cta-title">
+        你的保養台上，<br>真的沒有地雷嗎？<br>
+        <span>化妝台健檢，幫你精準排除風險</span>
+      </h2>
+
+      <p class="cta-sub">
+        皮秒雷射療效好不好，20% 取決於術中操作，<strong style="color:#fff;">80% 取決於你術後用了什麼。</strong>
+        成分表看不懂？不確定手邊產品能不能用？
+        CosKeeper「化妝台健檢」為你一一掃描，找出隱藏地雷，確認每支產品在術後的安全性。
+      </p>
+
+      <!-- Value Props -->
+      <div class="cta-props">
+        <div class="cta-prop">
+          <div class="prop-icon">🔍</div>
+          <h4>成分全面掃描</h4>
+          <p>逐行解析成分表，標記術後危險成分與安全成分，精確到濃度區間</p>
+        </div>
+        <div class="cta-prop">
+          <div class="prop-icon">📅</div>
+          <h4>分階段使用建議</h4>
+          <p>依照你的術後天數，給出「現在能用 / 等幾天」的明確建議</p>
+        </div>
+        <div class="cta-prop">
+          <div class="prop-icon">⚠️</div>
+          <h4>地雷預警排除</h4>
+          <p>找出產品中可能造成反黑、敏感、感染的隱藏風險因子</p>
+        </div>
+        <div class="cta-prop">
+          <div class="prop-icon">💡</div>
+          <h4>替代品推薦</h4>
+          <p>若產品不適合，立即推薦同效果的術後友善替代選擇</p>
+        </div>
+      </div>
+
+      <!-- Urgency -->
+      <div class="urgency-bar">
+        ⏰ 術後黃金168小時內使用，<strong>反黑風險降低最多可達 60%</strong>——現在就行動
+      </div>
+
+      <br>
+
+      <a href="#" class="cta-btn">
+        立即預約「化妝台健檢」→
+      </a>
+
+      <p class="cta-note">已有超過 2,000 位醫美消費者使用 CosKeeper 健檢服務 · 滿意度 98.6%</p>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>© 2025 <span>CosKeeper</span> · 醫美術後關鍵保養168系列 · 皮秒雷射篇</p>
+  <p style="margin-top: 6px;">本內容僅供保養參考，不構成醫療建議。術後異常請聯繫施術診所。</p>
+</footer>
+
+<!-- ───────────────────────────
+     JavaScript
+─────────────────────────── -->
+<script>
+  // Scroll progress bar
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 60;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Active day highlight in nav
+  const dayCards = document.querySelectorAll('.day-card');
+  const navLinks = document.querySelectorAll('.nav-days a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(a => {
+          a.style.background = a.getAttribute('href') === '#' + id
+            ? 'var(--primary)' : '';
+          a.style.color = a.getAttribute('href') === '#' + id
+            ? 'var(--white)' : '';
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  dayCards.forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>
