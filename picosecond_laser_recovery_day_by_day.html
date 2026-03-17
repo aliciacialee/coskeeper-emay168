@@ -1,0 +1,194 @@
+
+<style>
+  .timeline-wrap { padding: 1rem 0; }
+  .day-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .day-btn {
+    padding: 6px 14px; border-radius: 20px; border: 0.5px solid var(--color-border-secondary);
+    background: var(--color-background-secondary); font-size: 13px; cursor: pointer;
+    transition: all .18s; color: var(--color-text-secondary); font-weight: 400;
+  }
+  .day-btn:hover { background: var(--color-background-primary); color: var(--color-text-primary); }
+  .day-btn.active { background: var(--color-text-primary); color: var(--color-background-primary); border-color: var(--color-text-primary); font-weight: 500; }
+  .day-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; }
+  .day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .day-badge { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+  .day-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+  .day-subtitle { font-size: 13px; color: var(--color-text-secondary); margin: 2px 0 0; }
+  .section-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-tertiary); margin: 1rem 0 .5rem; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: .75rem; }
+  .tag { font-size: 12px; padding: 3px 10px; border-radius: 12px; font-weight: 400; }
+  .tag-warn { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .tag-info { background: var(--color-background-info); color: var(--color-text-info); }
+  .tag-ok   { background: var(--color-background-success); color: var(--color-text-success); }
+  .tag-mute { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+  .symptom-list { margin: 0; padding: 0; list-style: none; }
+  .symptom-list li { font-size: 13.5px; color: var(--color-text-secondary); line-height: 1.75; padding-left: 16px; position: relative; }
+  .symptom-list li::before { content: '·'; position: absolute; left: 4px; color: var(--color-text-tertiary); }
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: .75rem; }
+  .do-box, .dont-box { padding: .75rem; border-radius: var(--border-radius-md); font-size: 12.5px; line-height: 1.65; }
+  .do-box   { background: var(--color-background-success); color: var(--color-text-success); }
+  .dont-box { background: var(--color-background-danger);  color: var(--color-text-danger);  }
+  .do-box strong, .dont-box strong { display: block; font-weight: 500; margin-bottom: 4px; font-size: 12px; letter-spacing: .04em; }
+  .risk-bar-wrap { display: flex; align-items: center; gap: 8px; margin-top: .5rem; }
+  .risk-bar-bg { flex: 1; height: 6px; border-radius: 3px; background: var(--color-background-secondary); overflow: hidden; }
+  .risk-bar-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+  .risk-label { font-size: 12px; color: var(--color-text-secondary); min-width: 54px; text-align: right; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: .9rem 0; }
+  .key-note { font-size: 13px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-left: 3px solid var(--color-border-secondary); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: .6rem .9rem; line-height: 1.6; margin-top: .75rem; }
+  .key-note span { font-weight: 500; color: var(--color-text-primary); }
+</style>
+
+<div class="timeline-wrap">
+  <div class="day-tabs" id="tabs"></div>
+  <div class="day-card" id="card"></div>
+</div>
+
+<script>
+const days = [
+  {
+    num: 1,
+    label: '術後第1天',
+    phase: '急性發炎期',
+    color: { bg: '#FCEBEB', text: '#A32D2D' },
+    symptoms: ['明顯潮紅，皮膚泛玫瑰至鮮紅色', '灼熱感、緊繃感明顯', '輕至中度水腫，尤以眼周、顴骨處為甚', '點狀出血點（Petechiae）在使用聚焦鏡頭後常見', '皮膚觸感粗糙、對外界刺激極度敏感'],
+    tags: [['急性發炎', 'warn'], ['水腫高峰', 'warn'], ['屏障受損', 'warn']],
+    risks: [['PIH風險', 30], ['感染風險', 45], ['屏障損傷', 80]],
+    dos: ['冰敷（隔布敷臉，每次15分鐘）', '立即使用醫師指定修復凝膠', '保持術後部位清潔乾燥', '大量補充水分'],
+    donts: ['禁止觸碰或揉搓臉部', '禁止化妝或接觸任何刺激性保養品', '禁止高溫環境（熱水澡、三溫暖）', '禁止日曬'],
+    note: '此期發炎反應屬正常生理現象，是膠原新生的啟動訊號，不必過度擔憂。但感染防護從此刻起就要嚴格執行。'
+  },
+  {
+    num: 2,
+    label: '術後第2天',
+    phase: '水腫高峰 → 退紅開始',
+    color: { bg: '#FAEEDA', text: '#854F0B' },
+    symptoms: ['紅腫達到顛峰後開始緩慢消退', '灼熱感略減，但緊繃感持續', '部分患者出現輕微脫屑前兆（皮膚感覺「緊」）', '色素代謝開始啟動，深色肌底患者可開始觀察色素變化', '對溫度、風吹仍非常敏感'],
+    tags: [['水腫高峰', 'warn'], ['退紅開始', 'mute'], ['高度敏感', 'warn']],
+    risks: [['PIH風險', 40], ['感染風險', 40], ['屏障損傷', 75]],
+    dos: ['持續保濕，每2~3小時補擦修復霜', '若有結痂勿強行撕除', '繼續使用醫師開立的藥膏', '嚴格防曬（室內亦需防曬）'],
+    donts: ['不可使用含酒精、香料的保養品', '不可嘗試「加速代謝」的方法（如：蒸臉）', '避免大量流汗的活動', '禁止熱食或辛辣食物'],
+    note: '第2天是患者最常「自行亂加保養」的時間點，也是誤踩地雷最高的一天。務必只使用醫師指定的修復品。'
+  },
+  {
+    num: 3,
+    label: '術後第3天',
+    phase: '🔴 最關鍵日：屏障修復黃金啟動',
+    color: { bg: '#FCEBEB', text: '#A32D2D' },
+    symptoms: ['紅腫明顯減退，但皮膚呈現乾燥、緊繃', '開始出現輕微浮皮、脫屑（正常的表皮更替訊號）', '皮膚屏障功能（TEWL值）仍處高位，防禦力最低', '黑色素碎片開始向上移行，部分患者膚色暫時偏深', '色素沉澱（PIH）的臨床風險從此日起顯著上升'],
+    tags: [['屏障最脆弱', 'warn'], ['PIH高風險', 'warn'], ['脫屑開始', 'mute']],
+    risks: [['PIH風險', 80], ['感染風險', 35], ['屏障損傷', 90]],
+    dos: ['加強高效保濕（含有神經醯胺、玻尿酸成分）', '嚴格物理防曬SPF50+ PA++++', '觀察皮膚顏色變化，有異常立即回診', '睡眠充足以利修復'],
+    donts: ['禁止使用去角質、酸類、A醇產品', '禁止蒸氣、溫泉、游泳', '不可強行剝除浮皮', '不可日曬，即使短短5分鐘'],
+    note: '⚠ 臨床關鍵日。屏障功能處於最低谷，黑色素同時處於移行期，此時若紫外線照射，幾乎100%誘發PIH（反黑）。防曬是此日最重要的單一行為。'
+  },
+  {
+    num: 4,
+    label: '術後第4天',
+    phase: '屏障修復進行中',
+    color: { bg: '#FAEEDA', text: '#854F0B' },
+    symptoms: ['脫屑進入高峰期，薄薄的浮皮或細屑持續脫落', '皮膚可能出現輕微刺癢感（修復中的正常神經訊號）', '部分患者膚色仍偏暗沉（正常代謝過程）', '紅腫幾乎完全消退', '皮膚開始有「回彈」感，但仍較脆弱'],
+    tags: [['脫屑高峰', 'warn'], ['輕微搔癢', 'mute'], ['紅腫消退', 'ok']],
+    risks: [['PIH風險', 75], ['感染風險', 25], ['屏障損傷', 70]],
+    dos: ['保濕頻率維持，避免皮膚乾燥起皮', '防曬繼續嚴格執行', '出現搔癢可冰敷緩解', '若有疑慮主動聯繫診所'],
+    donts: ['禁止用手撕扯浮皮（可能留下色素沉澱或疤痕）', '不可使用含薄荷、茶樹油等清涼成分止癢', '避免大量揮汗運動', '不可使用面膜類產品'],
+    note: '搔癢是皮膚神經末梢修復的訊號，代表修復在進行，是好現象。但「抓」的動作會破壞新生上皮，不可輕忽。'
+  },
+  {
+    num: 5,
+    label: '術後第5天',
+    phase: '上皮再生加速期',
+    color: { bg: '#EAF3DE', text: '#27500A' },
+    symptoms: ['脫屑趨緩，皮膚質地開始轉向細緻', '膚色可能仍有輕微不均（黑色素碎片代謝尚未完全）', '皮膚觸感逐漸回軟，不再那麼緊繃', '大多數患者紅腫、灼熱感已完全消失', '新生上皮層開始成形，皮膚對外部刺激的耐受度略有提升'],
+    tags: [['脫屑趨緩', 'ok'], ['膚色不均', 'mute'], ['上皮再生', 'ok']],
+    risks: [['PIH風險', 60], ['感染風險', 15], ['屏障損傷', 50]],
+    dos: ['可嘗試輕柔的化妝水（需無酒精、無香料）', '持續防曬，不可因「好了很多」而鬆懈', '觀察有無不尋常的局部紅腫或膿液（感染徵兆）', '補充抗氧化飲食（維C、維E）'],
+    donts: ['仍不可使用酸類、A醇、精華油', '不可提早回診要求「加做雷射加速代謝」', '不可蒸臉、做臉（即使標榜溫和）', '避免長時間戴口罩摩擦皮膚'],
+    note: '第5天是患者開始想恢復保養習慣的時間點。建議「只加不換」原則——在修復品之外只能加輕量保濕，其他一律等第7天後再評估。'
+  },
+  {
+    num: 6,
+    label: '術後第6天',
+    phase: '修復鞏固期',
+    color: { bg: '#E1F5EE', text: '#085041' },
+    symptoms: ['皮膚外觀趨近正常，可能輕微偏紅或偏黃', '若有PIH傾向，此時可見局部暗沉或斑點重現', '黑色素代謝高峰：有效代謝的黑色素碎片大幅排出', '屏障功能已恢復約60~70%', '皮膚開始有彈性、光澤感初步顯現'],
+    tags: [['屏障恢復中', 'ok'], ['色素代謝峰', 'info'], ['光澤初現', 'ok']],
+    risks: [['PIH風險', 55], ['感染風險', 10], ['屏障損傷', 35]],
+    dos: ['可開始使用較完整的保養步驟（化妝水→乳液→修復霜）', '防曬持續，SPF50+不能少', '評估是否需要加入含有熊果素、傳明酸的美白保養', '可輕柔洗臉，水溫需冷涼'],
+    donts: ['禁止使用磨砂膏、去角質刷具', '不可過早嘗試彩妝（粉底容易造成摩擦與阻塞）', '不可做任何侵入性療程（針清、微針）', '避免含有刺激性成分的面膜'],
+    note: '若此時出現局部明顯暗沉，應立即回診請醫師評估是否需要加入美白或抗發炎藥物，不可自行判斷並使用市售美白產品。'
+  },
+  {
+    num: 7,
+    label: '術後第7天',
+    phase: '初步修復完成，進入膠原重塑期',
+    color: { bg: '#E6F1FB', text: '#0C447C' },
+    symptoms: ['外觀大致回到正常狀態', '皮膚屏障功能恢復約75~80%', '毛孔視覺縮小效果開始顯現（但並非最終結果）', '膚色若均勻即代表無PIH，若有暗沉需持續追蹤', '進入膠原重塑期：真皮層成纖維細胞活化，膠原蛋白合成啟動'],
+    tags: [['屏障大致恢復', 'ok'], ['膠原重塑啟動', 'info'], ['效果初見', 'ok']],
+    risks: [['PIH風險', 45], ['感染風險', 5], ['屏障損傷', 20]],
+    dos: ['可回診讓醫師評估恢復狀況', '可開始使用防曬隔離底妝（建議氣墊型）', '防曬繼續維持至少3個月，這是膠原重塑期的護城河', '可補充膠原蛋白相關營養品（維C有助膠原合成）'],
+    donts: ['第7~14天仍不建議使用高濃度酸類或A醇', '不可過早安排第二次雷射（建議間隔至少4~6週）', '避免在炎熱、高UV環境下長時間戶外活動', '不可因「已恢復」而完全停止保濕步驟'],
+    note: '第7天只是「表面修復完成」的里程碑，真正的效果（毛孔細緻化、斑點淡化、膠原新生）將在第14~90天逐步顯現。耐心是最好的術後保養品。'
+  }
+];
+
+function render(idx) {
+  const d = days[idx];
+  document.querySelectorAll('.day-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+
+  const tagsHtml = d.tags.map(([t,type]) =>
+    `<span class="tag tag-${type}">${t}</span>`).join('');
+
+  const riskHtml = d.risks.map(([label, val]) => {
+    const color = val >= 70 ? '#E24B4A' : val >= 45 ? '#EF9F27' : '#1D9E75';
+    return `<div style="margin-bottom:6px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--color-text-secondary);margin-bottom:3px">
+        <span>${label}</span><span style="font-weight:500;color:${color}">${val}%</span>
+      </div>
+      <div class="risk-bar-bg"><div class="risk-bar-fill" style="width:${val}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
+
+  const symsHtml = d.symptoms.map(s => `<li>${s}</li>`).join('');
+
+  document.getElementById('card').innerHTML = `
+    <div class="day-header">
+      <div class="day-badge" style="background:${d.color.bg};color:${d.color.text}">D${d.num}</div>
+      <div>
+        <p class="day-title">${d.label}</p>
+        <p class="day-subtitle">${d.phase}</p>
+      </div>
+    </div>
+    <div class="tag-row">${tagsHtml}</div>
+    <hr class="divider">
+    <div class="section-label">膚況症狀</div>
+    <ul class="symptom-list">${symsHtml}</ul>
+    <hr class="divider">
+    <div class="section-label">臨床風險評估</div>
+    ${riskHtml}
+    <hr class="divider">
+    <div class="section-label">照護建議</div>
+    <div class="do-dont">
+      <div class="do-box">
+        <strong>✓ 應做</strong>
+        ${d.dos.map(s=>`<div style="margin-bottom:3px">${s}</div>`).join('')}
+      </div>
+      <div class="dont-box">
+        <strong>✗ 禁止</strong>
+        ${d.donts.map(s=>`<div style="margin-bottom:3px">${s}</div>`).join('')}
+      </div>
+    </div>
+    <div class="key-note"><span>醫師提醒：</span>${d.note}</div>
+  `;
+}
+
+const tabs = document.getElementById('tabs');
+days.forEach((d,i) => {
+  const btn = document.createElement('button');
+  btn.className = 'day-btn';
+  btn.textContent = `第 ${d.num} 天`;
+  btn.onclick = () => render(i);
+  tabs.appendChild(btn);
+});
+
+render(0);
+</script>
