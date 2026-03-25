@@ -215,12 +215,29 @@
     .tag-mute { background: var(--grey-200); color: var(--text-muted); }
 
     /* risk bars */
-    .risk-item { margin-bottom: 9px; }
+    .risk-item { margin-bottom: 12px; }
     .risk-row {
-      display: flex; justify-content: space-between;
+      display: flex; justify-content: space-between; align-items: center;
       font-size: 12px; color: var(--text-muted); margin-bottom: 4px;
     }
     .risk-row span:last-child { font-weight: 600; }
+    .risk-label-wrap { display: flex; align-items: center; gap: 5px; }
+    .risk-info-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: var(--grey-200); color: var(--text-muted);
+      font-size: 9px; font-weight: 700; cursor: pointer;
+      border: none; flex-shrink: 0; line-height: 1;
+      transition: background 0.15s;
+    }
+    .risk-info-btn:hover { background: var(--grey-500); color: #fff; }
+    .risk-desc {
+      display: none; font-size: 11.5px; color: var(--text-muted);
+      line-height: 1.6; margin-top: 5px; padding: 7px 10px;
+      background: var(--grey-100); border-radius: 7px;
+      border-left: 2.5px solid var(--grey-200);
+    }
+    .risk-desc.open { display: block; }
     .risk-bar-bg { height: 6px; border-radius: 3px; background: var(--grey-200); overflow: hidden; }
     .risk-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
 
@@ -463,6 +480,10 @@
 
 <script>
 // ── Accordion ──
+function toggleRiskDesc(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
 function toggleAcc(id) {
   const el = document.getElementById(id);
   const opening = !el.classList.contains('open');
@@ -590,7 +611,7 @@ const days = [
     donts: [
       '禁止使用片狀面膜（易引發接觸性皮炎）',
       '禁止去角質、酸類、A醇任何形式',
-      '不可強行剝除脫屑，不可日曬即使只有5分鐘',
+      '不可強行剝除脫屑，不可太陽直曬即使只有5分鐘',
       '避免三溫暖、蒸臉、熱水澡，熱氣加劇血管擴張'
     ],
     note: '⚠ 臨床最關鍵日。屏障功能低谷與黑色素移行期重疊，紫外線暴露極易誘發 PIH（反黑）。防曬是今日唯一的首要任務。',
@@ -630,7 +651,6 @@ const days = [
       '洗臉時讓水自然流過，殘餘痂皮若自然脫落才是正確時機',
       '出現搔癢可冰敷緩解，切勿抓癢',
       '新生粉紅膚色區域對紫外線超敏感，物理防曬SPF30+輕點補塗',
-      '晚上可使用保濕面膜（免沖洗型），深度滋潤過夜'
     ],
     donts: [
       '禁止手癢撕除皮屑或擠壓丘疹',
@@ -696,7 +716,7 @@ const days = [
       { name: '高濃度果酸（≥5%）', desc: '低濃度（2–3%）可在第7天後嘗試，現在仍等待' },
       { name: '物理去角質（磨砂膏）', desc: '新生皮膚機械阻力低，物理摩擦必傷' },
       { name: '任何去角質方式', desc: '皮膚自己知道何時脫屑，不需要協助加速' },
-      { name: '化學性防曬（厚塗）', desc: '薄薄的物理防曬即可；化學防曬仍建議推遲' }
+      { name: '化學性防曬', desc: '持續使用物理防曬；化學防曬仍建議推遲' }
     ]
   },
   {
@@ -767,10 +787,10 @@ const days = [
       '多攝取有助於膠原合成的營養（維C食物、膠原蛋白）'
     ],
     donts: [
+      '不可過早安排第二次雷射（建議間隔3個月）',
       '第14天內仍不建議使用高濃度酸類或A醇',
-      '不可過早安排第二次雷射（建議間隔4–6週）',
-      'A醇重啟請再等1–2週，從最低濃度（0.025–0.05%）、隔天一次開始',
-      '避免高溫、高UV的戶外環境，不可停止保濕'
+      'A醇重啟請待第3週再開始，從最低濃度（0.025–0.05%）、兩天一次',
+      '避免高溫、高UV的戶外環境，不可停止保濕、防曬'
     ],
     note: '第7天是表面修復的終點，卻是膠原蛋白重構的起點。真正的完美膚質會在第2到第4週越來越好，耐心呵護是值得的。',
     good: [
@@ -783,7 +803,7 @@ const days = [
     bad: [
       { name: 'A酸（Tretinoin 處方強度）', desc: '術後至少等3–4週，讓皮膚自行回穩後再引入' },
       { name: '高濃度AHA換膚', desc: '果酸換膚、化學剝離等療程需間隔4–6週' },
-      { name: '其他雷射 / 光療療程', desc: '皮秒後至少間隔4週；深層療程需6–8週' },
+      { name: '其他雷射 / 光療療程', desc: '皮秒療程應間隔12週，其他療程請向醫師諮詢' },
       { name: '戶外裸臉（無防曬）', desc: '術後最大風險行為——絕對禁止至少3個月' }
     ]
   }
@@ -809,16 +829,29 @@ function renderDay(idx) {
   const tagsHtml = d.tags.map(([t, type]) =>
     `<span class="tag tag-${type}">${t}</span>`).join('');
 
-  const risksHtml = d.risks.map(([label, val, color]) => `
+  const riskDescs = {
+    'PIH反黑風險': '術後黑色素細胞處於高度敏感狀態，一旦接觸紫外線或刺激性成分，極易觸發色素沉澱，形成難以消退的術後反黑斑。',
+    '感染風險':    '屏障受損時細菌更容易入侵，使用未滅菌保養品或手觸碰傷口，都可能引發感染與持續發炎，延長修復時程。',
+    '屏障損傷':    '皮膚天然防護膜遭到破壞，水分快速流失、外來刺激物輕易滲入。此時肌膚如同開放性傷口，需溫和成分協助重建。',
+  };
+  const risksHtml = d.risks.map(([label, val, color], i) => {
+    const id = `rd-${idx}-${i}`;
+    const desc = riskDescs[label] || '';
+    return `
     <div class="risk-item">
       <div class="risk-row">
-        <span>${label}</span>
+        <span class="risk-label-wrap">
+          <span>${label}</span>
+          ${desc ? `<button class="risk-info-btn" onclick="toggleRiskDesc('${id}')" title="了解更多">ⓘ</button>` : ''}
+        </span>
         <span style="color:${color}">${val}%</span>
       </div>
       <div class="risk-bar-bg">
         <div class="risk-bar-fill" style="width:${val}%;background:${color}"></div>
       </div>
-    </div>`).join('');
+      ${desc ? `<div class="risk-desc" id="${id}">${desc}</div>` : ''}
+    </div>`;
+  }).join('');
 
   const symptomsHtml = d.symptoms.map(s => `<li>${s}</li>`).join('');
 
