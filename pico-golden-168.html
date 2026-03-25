@@ -14,10 +14,10 @@
       line-height: 1.7;
     }
     :root {
-      --primary:    #809BFF;
-      --primary-dk: #5a7af0;
-      --primary-lt: #C6D3FF;
-      --green:      #8CDD2D;
+      --primary:    #6ab820;
+      --primary-dk: #0f2d1a;
+      --primary-lt: #99be6e;
+      --green:      #b3e17f;
       --green-dk:   #6ab820;
       --red:        #FF5A7A;
       --red-lt:     #FFE8ED;
@@ -40,37 +40,10 @@
       z-index: 999; width: 0%; transition: width 0.1s;
     }
 
-    /* ── Sticky nav ── */
-    .sticky-nav {
-      position: sticky; top: 0;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--grey-200);
-      z-index: 100; padding: 10px 18px;
-    }
-    .sticky-nav .nav-inner {
-      max-width: 740px; margin: 0 auto;
-      display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 8px;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 8px; }
-    .nav-logo .logo-box {
-      width: 28px; height: 28px;
-      background: var(--primary); border-radius: 7px;
-      display: flex; align-items: center; justify-content: center; font-size: 15px;
-    }
-    .nav-logo span { font-size: 14px; font-weight: 700; color: var(--primary-dk); }
-    .nav-cta-mini {
-      background: var(--primary); color: var(--white);
-      font-size: 12px; font-weight: 700;
-      padding: 6px 14px; border-radius: 20px;
-      text-decoration: none; white-space: nowrap;
-    }
-    .nav-cta-mini:hover { background: var(--primary-dk); }
 
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #1a1f4e 0%, #3a4aaa 55%, #809BFF 100%);
+      background: linear-gradient(135deg, #0b1a2e 0%, #0f2d1a 100%);
       color: var(--white); padding: 64px 18px 72px;
       text-align: center; position: relative; overflow: hidden;
     }
@@ -82,7 +55,7 @@
     .hero::after {
       content: ''; position: absolute; bottom: -80px; left: -40px;
       width: 220px; height: 220px;
-      background: rgba(198,211,255,0.15); border-radius: 50%;
+      background: rgba(15,45,26,0.6); border-radius: 50%;
     }
     .hero-badge {
       display: inline-block;
@@ -150,6 +123,7 @@
       padding: 14px 16px 16px;
       font-size: 13.5px; color: rgba(255,255,255,0.88);
       line-height: 1.7;
+      text-align: left;
     }
     .acc-body-inner strong { color: #c9ff72; }
     .acc-body-inner ul { padding-left: 16px; margin-top: 6px; }
@@ -183,10 +157,10 @@
       flex-direction: column; gap: 1px;
     }
     .day-btn .btn-label { font-size: 9px; font-weight: 500; opacity: 0.7; }
-    .day-btn:hover { border-color: var(--primary); color: var(--primary); }
+    .day-btn:hover { border-color: #6ab820; color: #6ab820; }
     .day-btn.active {
-      background: var(--primary); border-color: var(--primary);
-      color: var(--white); box-shadow: 0 4px 16px rgba(128,155,255,0.4);
+      background: #6ab820; border-color: #6ab820;
+      color: #1a1a2e; box-shadow: 0 4px 16px rgba(201,255,114,0.4);
     }
     .day-btn.active .btn-label { opacity: 0.85; }
 
@@ -260,14 +234,13 @@
     .sym-list li::before { content: '·'; position: absolute; left: 3px; color: var(--grey-500); }
 
     /* do/dont */
-    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width: 480px) { .do-dont { grid-template-columns: 1fr; } }
-    .do-box, .dont-box { padding: 12px 14px; border-radius: 10px; font-size: 13px; line-height: 1.65; }
+    .do-dont { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .do-box, .dont-box { padding: 14px 16px; border-radius: 10px; font-size: 13px; line-height: 1.65; }
     .do-box { background: #F0FDE6; color: #2a6400; }
     .dont-box { background: var(--red-lt); color: #9b0030; }
     .do-box strong, .dont-box strong {
-      display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-      text-transform: uppercase; margin-bottom: 7px; opacity: 0.75;
+      display: block; font-size: 15px; font-weight: 900; letter-spacing: 0.04em;
+      margin-bottom: 10px;
     }
     .do-dont-item { display: flex; gap: 6px; margin-bottom: 4px; align-items: flex-start; }
     .do-dont-item::before { content: '•'; flex-shrink: 0; margin-top: 1px; }
@@ -275,7 +248,6 @@
     /* ingredients */
     .ing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     @media (max-width: 480px) { .ing-grid { grid-template-columns: 1fr; } }
-    .ing-block {}
     .ing-title {
       font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
       text-transform: uppercase; padding: 7px 12px;
@@ -298,16 +270,15 @@
     /* doctor note */
     .doc-note {
       font-size: 13.5px; color: var(--text-muted);
-      background: var(--grey-100);
-      border-left: 3px solid var(--primary);
-      border-radius: 0 10px 10px 0;
+      /**background: var(--grey-100);
+      border-radius: 10px;**/
       padding: 12px 16px; line-height: 1.65;
     }
     .doc-note strong { color: var(--text); font-weight: 600; }
 
     /* ── CTA ── */
     .cta-section {
-      background: linear-gradient(135deg, #1a1f4e 0%, #2e3da8 60%, #809BFF 100%);
+      background: linear-gradient(135deg, #0b1a2e 0%, #0f2d1a 100%);
       color: var(--white); padding: 72px 18px 64px;
       text-align: center; position: relative; overflow: hidden;
     }
@@ -319,7 +290,7 @@
     .cta-section::after {
       content: ''; position: absolute; bottom: -100px; left: -60px;
       width: 280px; height: 280px;
-      background: rgba(198,211,255,0.12); border-radius: 50%; pointer-events: none;
+      background: rgba(15,45,26,0.6); border-radius: 50%; pointer-events: none;
     }
     .cta-inner { position: relative; z-index: 1; }
     .cta-badge {
@@ -328,46 +299,26 @@
       color: #c9ff72; border-radius: 20px; font-size: 12px; font-weight: 700;
       letter-spacing: 0.1em; padding: 5px 16px; margin-bottom: 22px;
     }
-    .cta-title { font-size: clamp(22px, 4.5vw, 36px); margin-bottom: 14px; }
+    .cta-title { font-size: clamp(22px, 4.5vw, 36px); margin-bottom: 16px; }
     .cta-title span { color: #c9ff72; }
     .cta-sub {
-      font-size: 15px; color: rgba(255,255,255,0.82);
-      max-width: 540px; margin: 0 auto 36px; line-height: 1.7;
+      font-size: 15px; color: rgba(255,255,255,0.7);
+      max-width: 420px; margin: 0 auto 36px; line-height: 1.8;
     }
-    .cta-props {
-      display: flex; flex-wrap: wrap; gap: 14px;
-      justify-content: center; margin-bottom: 40px;
-    }
-    .cta-prop {
-      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 14px; padding: 18px 20px; max-width: 200px; text-align: left;
-    }
-    .cta-prop .prop-icon { font-size: 26px; margin-bottom: 8px; }
-    .cta-prop h4 { font-size: 14px; margin-bottom: 5px; }
-    .cta-prop p { font-size: 11.5px; color: rgba(255,255,255,0.7); line-height: 1.55; }
-    .urgency-bar {
-      background: rgba(140,221,45,0.15);
-      border: 1px solid rgba(140,221,45,0.35);
-      border-radius: 10px; padding: 12px 22px;
-      font-size: 13.5px; color: #c9ff72;
-      margin-bottom: 28px; display: inline-block;
-    }
-    .urgency-bar strong { color: var(--white); }
     .cta-btn {
       display: inline-block;
       background: linear-gradient(90deg, var(--green) 0%, #a2f040 100%);
       color: #1a3a00; font-size: 16px; font-weight: 800;
       letter-spacing: 0.04em; padding: 16px 48px;
       border-radius: 50px; text-decoration: none;
-      box-shadow: 0 8px 28px rgba(140,221,45,0.40);
-      transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+      transition: transform 0.2s; cursor: pointer;
     }
-    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(140,221,45,0.55); }
-    .cta-note { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 14px; }
+    .cta-btn:hover { transform: translateY(-2px); }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 16px; }
 
     /* ── Footer ── */
     footer {
-      background: #0e1235; color: rgba(255,255,255,0.38);
+      background: #000000; color: rgba(255,255,255,0.38);
       text-align: center; padding: 26px 18px; font-size: 12px;
     }
     footer span { color: var(--primary-lt); }
@@ -379,6 +330,14 @@
       .dc-info .d-title { font-size: 15px; }
     }
   </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0EMV2MCYE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M0EMV2MCYE');
+  </script>
 </head>
 <body>
 
@@ -389,11 +348,11 @@
 <header class="hero">
   <div class="hero-badge">✦ CosKeeper 醫美術後關鍵保養</div>
   <h1>皮秒雷射術後保養<br><em>黃金168小時</em></h1>
-  <p class="hero-sub">全程指引——了解每日膚況、用對成分、守住療效</p>
+  <p class="hero-sub">了解每日膚況、用對成分、守住療效</p>
 
   <!-- WHY / WHO / HOW Accordions -->
   <div class="accordion-group">
-    <div class="acc-item" id="acc-why">
+    <!--<div class="acc-item" id="acc-why">
       <button class="acc-trigger" onclick="toggleAcc('acc-why')">
         <span class="acc-label">
           為什麼前七天特別重要？
@@ -439,7 +398,7 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="acc-item" id="acc-how">
       <button class="acc-trigger" onclick="toggleAcc('acc-how')">
@@ -458,8 +417,8 @@
           </ul>
           <br>
           <strong>升級玩法：化妝台掃雷</strong><br>
-          手冊告訴你哪些成分要避開，但你手邊的產品到底有沒有雷？
-          用 CosKeeper「化妝台掃雷」服務，直接掃描家中每支保養品的成分表，精準標出術後危險成分，讓你不再靠猜的。
+          你手邊的產品到底有沒有雷？
+          用「化妝台掃雷」服務，直接掃描家中每支保養品的成分表，精準標出術後危險成分，讓你不再靠猜的。
         </div>
       </div>
     </div>
@@ -480,59 +439,25 @@
 <section class="cta-section" id="cta">
   <div class="container">
     <div class="cta-inner">
-      <div class="cta-badge">✦ CosKeeper 升級服務</div>
+      <div class="cta-badge">✦ 升級服務</div>
 
       <h2 class="cta-title">
-        你的保養台上，<br>真的沒有地雷嗎？<br>
-        <span>化妝台掃雷，幫你精準排除風險</span>
+        你手邊的保養品，<br><span>術後能用嗎？</span>
       </h2>
 
       <p class="cta-sub">
-        這份指南列出了7天的建議與禁用成分——但你手邊那瓶精華、乳液、面膜，
-        到底有沒有踩雷？<strong style="color:#fff;">CosKeeper「化妝台掃雷」</strong>
-        幫你逐行解析成分表，依照你的術後天數，告訴你哪支能用、哪支要等、哪支直接封存。
+        上面指南都看完了嗎？我很希望能寫出更多更詳細，但你肯定記不住，這樣幫不到你。<br><br>
+        我們想進一步幫助你，請掃描家中的保養品，我們幫你過濾篩選、整理出修復期保養地圖。
       </p>
 
-      <div class="cta-props">
-        <div class="cta-prop">
-          <div class="prop-icon">🔍</div>
-          <h4>成分全面掃描</h4>
-          <p>逐行解析成分表，精確標記術後危險成分，精確到濃度區間</p>
-        </div>
-        <div class="cta-prop">
-          <div class="prop-icon">📅</div>
-          <h4>分階段使用建議</h4>
-          <p>依照術後天數給出「現在能用 / 再等幾天」的明確建議</p>
-        </div>
-        <div class="cta-prop">
-          <div class="prop-icon">⚠️</div>
-          <h4>地雷預警排除</h4>
-          <p>揪出可能造成反黑、敏感、感染的隱藏風險因子</p>
-        </div>
-        <div class="cta-prop">
-          <div class="prop-icon">💡</div>
-          <h4>替代品推薦</h4>
-          <p>若產品不適合，立即推薦同效果的術後友善替代選擇</p>
-        </div>
-      </div>
+      <a href="#" class="cta-btn" onclick="gtag('event', 'click_cta', { page: 'pico_guidebook' })">立即使用「化妝台掃雷」→</a>
 
-      <div class="urgency-bar">
-        ⏰ 術後黃金168小時內使用，<strong>反黑風險可降低最多60%</strong>——現在就行動
-      </div>
-
-      <br>
-
-      <a href="#" class="cta-btn">
-        立即使用「化妝台掃雷」→
-      </a>
-
-      <p class="cta-note">已有超過 2,000 位醫美消費者使用 CosKeeper 健檢服務 · 滿意度 98.6%</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 <span>CosKeeper</span> · 皮秒術後黃金168 · 醫美術後關鍵保養系列</p>
+  <p>© 2026 <span>CosKeeper</span> · 皮秒術後黃金168 · 醫美術後關鍵保養系列</p>
   <p style="margin-top:5px;">本內容僅供保養參考，不構成醫療建議。術後異常請聯繫施術診所。</p>
 </footer>
 
@@ -540,7 +465,9 @@
 // ── Accordion ──
 function toggleAcc(id) {
   const el = document.getElementById(id);
+  const opening = !el.classList.contains('open');
   el.classList.toggle('open');
+  if (opening) gtag('event', 'open_accordion', { accordion_id: id });
 }
 
 // ── Day Data (merged from both sources) ──
@@ -867,8 +794,8 @@ const tabsEl = document.getElementById('dayTabs');
 days.forEach((d, i) => {
   const btn = document.createElement('button');
   btn.className = 'day-btn';
-  btn.innerHTML = `<span>${d.num}</span><span class="btn-label">DAY</span>`;
-  btn.onclick = () => renderDay(i);
+  btn.innerHTML = `<span class="btn-label">DAY</span><span>${d.num}</span>`;
+  btn.onclick = () => { gtag('event', 'switch_day', { day: d.num }); renderDay(i); };
   tabsEl.appendChild(btn);
 });
 
@@ -920,6 +847,10 @@ function renderDay(idx) {
       </div>
 
       <div class="dc-section">
+        <div class="doc-note">${d.note}</div>
+      </div>
+
+      <div class="dc-section">
         <div class="dc-slabel">當日狀態標記</div>
         <div class="tag-row">${tagsHtml}</div>
         <div class="dc-slabel" style="margin-top:14px">臨床風險評估</div>
@@ -943,19 +874,17 @@ function renderDay(idx) {
         <div class="dc-slabel">成分指南</div>
         <div class="ing-grid">
           <div class="ing-block good">
-            <div class="ing-title">✅ 推薦成分</div>
+            <div class="ing-title">✅ 對你有幫助</div>
             <ul class="ing-list">${goodHtml}</ul>
           </div>
           <div class="ing-block bad">
-            <div class="ing-title">❌ 絕對避開</div>
+            <div class="ing-title">⛔️ 絕對要避開</div>
             <ul class="ing-list">${badHtml}</ul>
           </div>
         </div>
       </div>
 
-      <div class="dc-section">
-        <div class="doc-note"><strong>醫師提醒：</strong>${d.note}</div>
-      </div>
+
     </div>`;
 }
 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>選擇你的醫美項目｜CosKeeper 術後保養手冊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      background: linear-gradient(135deg, #0b1a2e 0%, #0f2d1a 100%);
+      min-height: 100vh;
+      color: #ffffff;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+    }
+    :root {
+      --primary:    #809BFF;
+      --green:      #8CDD2D;
+      --white:      #ffffff;
+      --grey-200:   #e8ecf6;
+      --line-green: #06C755;
+      --line-green-dk: #04a844;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      padding: 16px 20px;
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-box {
+      width: 28px; height: 28px;
+      background: var(--primary); border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .nav-logo span { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.85); }
+
+    /* ── Main ── */
+    .main {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 60px 20px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(140,221,45,0.18);
+      color: #c9ff72;
+      border: 1px solid rgba(140,221,45,0.45);
+      border-radius: 20px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; padding: 5px 18px; margin-bottom: 24px;
+    }
+    .main-title {
+      font-size: clamp(26px, 7vw, 44px);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .main-title span {
+      background: linear-gradient(135deg, #c9ff72 0%, #8CDD2D 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .main-subtitle {
+      font-size: clamp(14px, 3vw, 16px);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      max-width: 360px;
+      margin-bottom: 52px;
+    }
+
+    /* ── Buttons ── */
+    .btn-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .btn-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: 16px;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 17px; font-weight: 700;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-item:hover {
+      background: rgba(140,221,45,0.12);
+      border-color: rgba(140,221,45,0.45);
+      transform: translateX(4px);
+    }
+    .btn-item .arrow {
+      font-size: 18px;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+    .btn-item:hover .arrow {
+      color: #c9ff72;
+    }
+    .btn-item.coming-soon {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+    .btn-item.coming-soon .label {
+      font-size: 11px; font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 2px 8px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+  </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M0EMV2MCYE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M0EMV2MCYE');
+  </script>
+</head>
+<body>
+
+
+
+  <main class="main">
+    <div class="badge">術後保養手冊</div>
+    <h1 class="main-title">你做了哪種<span>醫美項目</span>？</h1>
+    <p class="main-subtitle">選擇你接受的療程，取得術後 168 小時保養指南</p>
+
+    <div class="btn-grid">
+      <a href="/guidebook-picosecond" class="btn-item" onclick="gtag('event', 'select_guidebook', { treatment: '皮秒雷射' })">
+        <span>皮秒雷射</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="/guidebook-aha-peel" class="btn-item" onclick="gtag('event', 'select_guidebook', { treatment: '果酸換膚' })">
+        <span>果酸換膚</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="/guidebook-hydrafacial" class="btn-item" onclick="gtag('event', 'select_guidebook', { treatment: '水飛梭' })">
+        <span>水飛梭</span>
+        <span class="arrow">→</span>
+      </a>
+      <a href="/guidebook-comedone" class="btn-item" onclick="gtag('event', 'select_guidebook', { treatment: '清粉刺' })">
+        <span>清粉刺</span>
+        <span class="arrow">→</span>
+      </a>
+      <div class="btn-item coming-soon">
+        <span>陸續新增中...</span>
+        <span class="label">即將推出</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">© CosKeeper｜術後肌膚守護</footer>
+
+</body>
+</html>
