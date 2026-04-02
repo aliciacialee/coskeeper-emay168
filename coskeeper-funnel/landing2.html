@@ -94,6 +94,11 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.14);
     }
+    /* Pain cards — solid translucent, no blur */
+    .solid-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
     .glass-dark {
       background: rgba(6, 8, 15, 0.52);
       backdrop-filter: blur(20px);
@@ -143,19 +148,13 @@
       align-items: center;
       justify-content: center;
       gap: var(--space-sm);
-      background: linear-gradient(135deg, #C89B3C, #E0B84A);
+      background: #C89B3C;
       color: #1A1200;
       font-weight: var(--font-bold);
       font-size: var(--text-base);
       padding: 14px 28px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(200, 155, 60, 0.5);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
       border: none;
-    }
-    .btn-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 32px rgba(200, 155, 60, 0.65);
     }
     .btn-line-solid {
       display: inline-flex;
@@ -168,13 +167,7 @@
       font-size: var(--text-base);
       padding: 14px 28px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(6, 199, 85, 0.4);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
       border: none;
-    }
-    .btn-line-solid:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 32px rgba(6, 199, 85, 0.55);
     }
 
     /* ── Pain Points ── */
@@ -388,19 +381,19 @@
       <p class="section-heading">術後最常遇到的三大困境</p>
       <div class="pain-grid">
 
-        <div class="pain-card glass">
+        <div class="pain-card solid-card">
           <span class="pain-num">01</span>
           <h3>搔癢、結痂、反黑！？</h3>
           <p>剛做完很想保養，又怕做錯，不知道該從哪裡開始。</p>
         </div>
 
-        <div class="pain-card glass">
+        <div class="pain-card solid-card">
           <span class="pain-num">02</span>
           <h3>保養品難道只能重買嗎？</h3>
           <p>沒預算到術後還有專用保養，原本的保養品真的都不能用嗎。</p>
         </div>
 
-        <div class="pain-card glass">
+        <div class="pain-card solid-card">
           <span class="pain-num">03</span>
           <h3>不確定哪幾瓶不能用</h3>
           <p>都說術後需要加強保濕，又怕用錯成分，到底該怎麼辦。</p>
@@ -449,7 +442,7 @@
   <section class="cta-section" id="line-cta">
     <div class="container">
       <div class="cta-glass glass-dark">
-        <h2>加入 LINE 好友<br>立即領取</h2>
+        <h2>加入 LINE 好友<br>立即領取術後保養攻略</h2>
         <a href="https://lin.ee/rOC34FC" class="btn-line-solid">
           加入 LINE 好友，免費領取
         </a>
