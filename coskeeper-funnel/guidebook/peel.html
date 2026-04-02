@@ -5,9 +5,836 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>化學換膚術後指南 | CosKeeper</title>
   <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .hero-bg-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .background-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .guidebook-hero {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-2xl) 0;
+    }
+    .guidebook-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-bg-wrapper .section {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes fluid-blob-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30%, 20%) scale(1.1); }
+      66% { transform: translate(-10%, -15%) scale(0.9); }
+    }
+    @keyframes fluid-blob-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-20%, -30%) scale(0.9); }
+      66% { transform: translate(15%, 10%) scale(1.1); }
+    }
+    @keyframes fluid-blob-3 {
+    0%, 100% { transform: translate(0, 0); }
+    40% { transform: translate(25%, -15%) scale(1.1); }
+    70% { transform: translate(-10%, 10%); }
+    }
+    @keyframes fluid-blob-4 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-15%, 25%) scale(0.9, 1.1); }
+    }
+  .blob-1 { animation-name: fluid-blob-1; animation-duration: 15s; }
+  .blob-2 { animation-name: fluid-blob-2; animation-duration: 20s; animation-delay: -5s; }
+  .blob-3 { animation-name: fluid-blob-3; animation-duration: 18s; animation-delay: -2s; }
+  .blob-4 { animation-name: fluid-blob-4; animation-duration: 22s; }
+    .treatment-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: var(--font-bold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: var(--space-md);
+    }
+    .guidebook-hero .treatment-title { color: #FFFFFF; }
+    .guidebook-hero .treatment-desc { color: rgba(255,255,255,0.8); }
+    .guidebook-hero .treatment-tag {
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.15);
+    }
+    .treatment-title {
+      font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+      margin-bottom: var(--space-md);
+    }
+    .treatment-desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-lg);
+    }
+    .treatment-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .treatment-tag {
+      font-size: var(--text-xs);
+      padding: 3px 10px;
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+    }
+    .day-phase {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .skin-status {
+      background: var(--bg-secondary);
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      border-left: 3px solid var(--blue-300);
+    }
+    .day-item[data-phase="sensitive"] .skin-status { border-left-color: var(--light-red); }
+    .day-item[data-phase="caution"]   .skin-status { border-left-color: var(--light-yellow); }
+    .day-item[data-phase="recovery"]  .skin-status { border-left-color: var(--blue-300); }
+    .ingredient-tabs { margin-top: var(--space-md); }
+    .ingredient-tabs .tabs { margin-bottom: var(--space-md); }
+    .ingredient-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .ingredient-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-secondary);
+      gap: var(--space-md);
+    }
+    .ingredient-name {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      color: var(--text-primary);
+    }
+    .ingredient-en {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .ingredient-note {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 50%;
+      line-height: 1.4;
+    }
+    .notes-section {
+      background: var(--light-yellow-bg);
+      padding: var(--space-xl) 0;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .notes-section h4 {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--light-yellow);
+      margin-bottom: var(--space-md);
+    }
+    .notes-section p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+    }
+    .notes-section p + p { margin-top: var(--space-md); }
+    .cta-bg-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .sweep-cta {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-3xl) 0;
+      text-align: center;
+    }
+    .sweep-cta-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    .sweep-cta h2 {
+      color: #fff;
+      font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+      line-height: var(--leading-tight);
+    }
+    .sweep-cta .btn-accent {
+      background: #fff;
+      color: #C24B6A;
+      border: 2px solid #FF6A88;
+      box-shadow: none;
+    }
+    .sweep-cta .btn-accent:hover {
+      background: rgba(255,255,255,0.92);
+    }
+    .sweep-cta-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      width: 100%;
+      max-width: 340px;
+    }
+    .sweep-benefit-item {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      row-gap: 4px;
+      column-gap: var(--space-sm);
+      text-align: left;
+    }
+    .sweep-benefit-dot {
+      grid-row: 1;
+      grid-column: 1;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .sweep-benefit-item span:first-of-type {
+      grid-row: 1;
+      grid-column: 2;
+      font-size: var(--text-base);
+      font-weight: var(--font-bold);
+      color: #fff;
+    }
+    .sweep-benefit-item span:last-of-type {
+      grid-row: 2;
+      grid-column: 2;
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.8);
+      line-height: 1.55;
+    }
+  </style>
 </head>
 <body>
 
-<script src="../assets/funnel.js"></script>
+<!-- Header -->
+<header class="page-header">
+  <div class="container">
+    <a href="../guidebook/index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      返回指南列表
+    </a>
+    <a href="https://www.coskeeper.com"><img src="../images/Logo_透明背景.png" alt="CosKeeper" style="height:24px;width:auto;"></a>
+  </div>
+</header>
+
+<!-- Hero + Day Timeline shared background -->
+<div class="hero-bg-wrapper">
+<div class="background-wrapper">
+  <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="soft-blur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" fill="#FF9A8B"/>
+    <circle class="blob-1" cx="20" cy="20" r="30" fill="#FF6A88" filter="url(#soft-blur)"/>
+    <circle class="blob-2" cx="80" cy="80" r="25" fill="#FF99AC" filter="url(#soft-blur)"/>
+    <circle class="blob blob-3" cx="10" cy="85" r="28" fill="#FF9A8B" filter="url(#soft-blur)"/>
+    <circle class="blob blob-4" cx="60" cy="50" r="22" fill="#FF6A88" filter="url(#soft-blur)"/>
+  </svg>
+</div>
+
+<!-- Hero -->
+<section class="guidebook-hero">
+  <div class="container">
+    <p class="treatment-eyebrow">術後照護指南</p>
+    <h1 class="treatment-title">化學換膚<br>七日照護</h1>
+    <p class="treatment-desc">以酸性物質均勻剝離老化角質，刺激新皮再生。術後必然經歷「泛紅 → 緊繃 → 脫皮 → 新皮」四個階段，是正常代謝過程，不是過敏。</p>
+    <div class="treatment-tags">
+      <span class="treatment-tag">果酸換膚 AHA Peel</span>
+      <span class="treatment-tag">水楊酸換膚 BHA Peel</span>
+      <span class="treatment-tag">複合酸換膚</span>
+    </div>
+  </div>
+</section>
+
+<!-- Day Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+
+      <!-- Day 1 -->
+      <div class="day-item" data-phase="sensitive">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge sensitive">1</div>
+            <div>
+              <div class="day-title">泛紅熱感・靜養修護</div>
+              <div class="day-phase">禁止任何刺激</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">施術後數小時內，全臉呈現明顯的潮紅、緊繃感與溫熱感，部分人有輕微刺痛或灼熱感。這是酸類剝離角質後引發的急性輕度炎症反應，屬於療程機制的一部分。皮膚屏障功能已暫時被削弱，對任何刺激的耐受度都大幅降低。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>用溫涼清水輕柔清洗（水溫不超過 30°C），以手掌輕推，不可搓揉</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>清潔後立即塗抹修護保濕品，不要讓皮膚裸露超過 30 秒</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>使用物理性防曬，即使在室內也要</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可以冷敷舒緩（乾淨冷水紗布，非冰塊），每次 15 分鐘</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>充足飲水，協助皮膚從內補水</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止熱水洗臉或蒸臉（升溫加劇發炎）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止使用任何含酸類、A 醇、維他命 C 的保養品</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止上妝（底妝封閉毛孔、卸妝動作摩擦傷口）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止搓揉、拍打或按摩臉部</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止出入高溫環境（三溫暖、廚房大火烹飪）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止飲酒（擴張血管，延長泛紅）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止劇烈運動（大量出汗刺激敏感皮膚）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d1-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d1-avoid">禁止使用</button>
+              </div>
+              <div id="d1-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸（多分子量）</div><div class="ingredient-en">Hyaluronic Acid (Multi-weight)</div></div><div class="ingredient-note">深層到表層全面補水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">吸濕保水，溫和零刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica Extract</div></div><div class="ingredient-note">舒緩消炎，促進修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇（維他命 B5）</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">修復組織、舒緩刺激感</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">尿囊素</div><div class="ingredient-en">Allantoin</div></div><div class="ingredient-note">舒緩抗敏，加速皮膚愈合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">葡聚糖</div><div class="ingredient-en">Beta-Glucan</div></div><div class="ingredient-note">舒緩修護，同時增強保濕</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">舒緩敏感，天然抗炎</div></div>
+                </div>
+              </div>
+              <div id="d1-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">乙醇酸</div><div class="ingredient-en">Glycolic Acid</div></div><div class="ingredient-note">換膚本身含酸，不可再加</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">乳酸</div><div class="ingredient-en">Lactic Acid</div></div><div class="ingredient-note">換膚本身含酸，不可再加</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">杏仁酸</div><div class="ingredient-en">Mandelic Acid</div></div><div class="ingredient-note">換膚本身含酸，不可再加</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸</div><div class="ingredient-en">Salicylic Acid (BHA)</div></div><div class="ingredient-note">同上，過度剝離</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">加速代謝，嚴重干擾癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 酸</div><div class="ingredient-en">Tretinoin</div></div><div class="ingredient-note">加速代謝，嚴重干擾癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">左旋維他命 C</div><div class="ingredient-en">L-Ascorbic Acid</div></div><div class="ingredient-note">酸性環境刺激受損屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">變性酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥並刺激脆弱皮膚</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">誘發過敏性炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">精油</div><div class="ingredient-en">Essential Oils</div></div><div class="ingredient-note">誘發過敏性炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">苯甲醯過氧化物</div><div class="ingredient-en">Benzoyl Peroxide</div></div><div class="ingredient-note">高度刺激，完全禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">薄荷醇</div><div class="ingredient-en">Menthol</div></div><div class="ingredient-note">刺激敏感皮膚</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">桉葉醇</div><div class="ingredient-en">Eucalyptol</div></div><div class="ingredient-note">刺激敏感皮膚</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-item" data-phase="sensitive">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge sensitive">2</div>
+            <div>
+              <div class="day-title">乾燥緊繃・補水優先</div>
+              <div class="day-phase">輕柔清潔</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">泛紅感開始緩退，取而代之的是明顯的乾燥與緊繃感，特別是表情動作時（張嘴、大笑）會感到皮膚「拉著」。眼周、嘴角、法令紋兩側可能出現輕微浮腫或細紋更明顯的假象——這是暫時現象，不代表換膚後老化加速。保濕是此時第一任務。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>保濕頻率提高為一天三次（早、中、晚），不要等到感覺乾才補擦</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>使用無起泡、低 pH 值的溫和潔膚乳，以指腹輕推後立即沖水</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>室內可使用加濕器，維持環境濕度 50-60%</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬不可省略，即使陰天 SPF30+ 物理性防曬為最低標準</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>充足睡眠（夜間促進皮膚修復）</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止使用任何去角質產品（含化學性、物理性）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止洗臉刷、洗臉機等振動清潔工具</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止敷含酒精的化妝水或收斂水</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止蒸臉或熱敷</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止上妝（若非不可，只用礦物粉底輕拍，回家立即卸除）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止飲酒、辛辣刺激性食物</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d2-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d2-avoid">禁止使用</button>
+              </div>
+              <div id="d2-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水保濕核心</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">吸濕鎖水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺 1, 3, 6-II</div><div class="ingredient-en">Ceramide 1, 3, 6-II</div></div><div class="ingredient-note">修復受損的脂質屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">膽固醇</div><div class="ingredient-en">Cholesterol</div></div><div class="ingredient-note">協助重建皮膚屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">亞麻油酸</div><div class="ingredient-en">Linoleic Acid</div></div><div class="ingredient-note">補充皮膚屏障所需脂質</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">保水 + 促修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">舒緩持續的輕微炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">抗敏感保護膜</div></div>
+                </div>
+              </div>
+              <div id="d2-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有 AHA 果酸</div><div class="ingredient-en">Glycolic、Lactic、Mandelic、Citric Acid</div></div><div class="ingredient-note">屏障未修復前禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸（BHA）</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">同上</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">左旋維他命 C</div><div class="ingredient-en">L-Ascorbic Acid</div></div><div class="ingredient-note">酸性 pH 刺激受損皮膚</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇類</div><div class="ingredient-en">Retinol、Retinaldehyde</div></div><div class="ingredient-note">加速代謝干擾癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度菸鹼胺（&gt;5%）</div><div class="ingredient-en">Niacinamide &gt;5%</div></div><div class="ingredient-note">Day 2 不建議，可能刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥破壞屏障 / 誘發過敏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">乾燥破壞屏障 / 誘發過敏</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-item" data-phase="caution">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge caution">3</div>
+            <div>
+              <div class="day-title">脫皮啟動・順其自然</div>
+              <div class="day-phase">禁止摳皮</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">脫皮正式啟動！通常從臉部輪廓邊緣（額頭邊、嘴角、法令紋兩側、下顎線）開始，出現薄層皮屑翹起，皮膚看起來「一塊一塊」不均勻。發癢感可能增強——這是代謝的生理訊號，不是過敏，但極度搔癢或出現水泡要立即回診。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>豐厚保濕：讓脫皮的舊皮在濕潤環境中自然軟化脫落</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可使用片狀保濕面膜（成分溫和、無酸類）每日 10-15 分鐘補水</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>記錄膚況照片，後續與醫師回診比對</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬繼續（物理性防曬為主）</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁撕扯、剝除、摳掉翹起的脫皮——強行剝除會留下色素沉澱（PIH）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止用去角質產品試圖「加速」脫皮，效果適得其反</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止濕敷化妝棉大量浸泡（過度泡水反而讓脫皮層乾燥崩裂）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止戴口罩整日摩擦（可的話盡量在家）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止蒸氣、熱水洗臉</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止激烈運動、大量出汗</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d3-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d3-avoid">禁止使用</button>
+              </div>
+              <div id="d3-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">維持脫皮層濕潤，助自然代謝</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">表層鎖水，舒緩癢感</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">持續修護皮膚屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica (CICA)</div></div><div class="ingredient-note">舒緩炎症，抗發癢</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">尿囊素</div><div class="ingredient-en">Allantoin</div></div><div class="ingredient-note">舒緩發癢不適</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">組織修復 + 止癢舒緩</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">組織修復 + 止癢舒緩</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">輕盈油脂，維持表層潤澤</div></div>
+                </div>
+              </div>
+              <div id="d3-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">果酸類 (AHA)</div><div class="ingredient-en">Glycolic、Lactic、Tartaric Acid</div></div><div class="ingredient-note">脫皮期完全禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">同上</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">同上</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">刺激脫皮層 / 誘發炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">刺激脫皮層 / 誘發炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">精油</div><div class="ingredient-en">Essential Oils</div></div><div class="ingredient-note">刺激脫皮層 / 誘發炎症</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">木瓜蛋白酵素</div><div class="ingredient-en">Papain</div></div><div class="ingredient-note">加速脫皮失控</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">鳳梨蛋白酵素</div><div class="ingredient-en">Bromelain</div></div><div class="ingredient-note">加速脫皮失控</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-item" data-phase="caution">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge caution">4</div>
+            <div>
+              <div class="day-title">脫皮高峰・外觀最難</div>
+              <div class="day-phase">保持耐心</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">通常是脫皮最大量、外觀最不好看的一天。大面積皮屑翹起，膚色不均，可能同時出現「已脫皮的光滑新皮」和「尚未脫落的舊皮」交錯的景象。這是換膚最後的黑暗期，再一兩天就會顯著改善。脫皮多少因人而異，少量脫皮不等於效果差。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>增加保濕乳（乳霜）使用量，厚敷於脫皮嚴重區域，幫助軟化舊皮</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>若皮膚局部極度乾裂不適，可短暫以凡士林點塗乾裂處急救</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>持續防曬（新舊皮交接處對 UV 超敏感）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>補充膠原蛋白相關飲食（雞湯、魚皮、蛋白質），從內輔助修復</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>絕對不可強行扯除大片脫皮——強扯等同「活剝」，PIH 風險極高</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止用底妝遮瑕蓋脫皮（粉底進入皮縫，卸妝時摩擦更嚴重）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止用熱毛巾敷臉試圖軟化脫皮（升溫刺激）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止做任何光療、按摩或臉部護理</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止吃光敏食物（芹菜、九層塔、大量檸檬汁）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d4-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d4-avoid">禁止使用</button>
+              </div>
+              <div id="d4-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸（大分子）</div><div class="ingredient-en">High MW Hyaluronic Acid</div></div><div class="ingredient-note">表面鎖水，舒緩乾燥不適</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">乳木果油</div><div class="ingredient-en">Shea Butter</div></div><div class="ingredient-note">厚實滋養，軟化脫皮層</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">凡士林（點塗急救）</div><div class="ingredient-en">Petrolatum</div></div><div class="ingredient-note">局部極度乾裂急救用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">全臉基礎保水 + 屏障修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">全臉基礎保水 + 屏障修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">輕盈潤澤</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">安撫 + 舒緩癢感</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">安撫 + 舒緩癢感</div></div>
+                </div>
+              </div>
+              <div id="d4-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有酸類</div><div class="ingredient-en">AHA、BHA、PHA</div></div><div class="ingredient-note">脫皮高峰，一切酸完全禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">加速代謝干擾癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 酸</div><div class="ingredient-en">Tretinoin</div></div><div class="ingredient-note">加速代謝干擾癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C（酸性）</div><div class="ingredient-en">L-Ascorbic Acid</div></div><div class="ingredient-note">酸性刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度菸鹼胺（&gt;5%）</div><div class="ingredient-en">Niacinamide &gt;5%</div></div><div class="ingredient-note">脫皮期不宜高濃度</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">完全禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">完全禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">精油</div><div class="ingredient-en">Essential Oils</div></div><div class="ingredient-note">完全禁用</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">5</div>
+            <div>
+              <div class="day-title">新皮初現・防曬急迫</div>
+              <div class="day-phase">輕柔護理</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">大部分脫皮開始收尾，下方露出較光滑、偏粉嫩的新生皮膚。膚色整體已明顯比術前更均勻，小細紋改善、毛孔看起來較細。新生皮膚的黑色素細胞對 UV 的防禦力幾乎是零，此時一次疏於防曬，極可能造成術後色素沉澱（PIH）。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬升級：SPF50+/PA++++ 物理性防曬，戶外每 2 小時補擦，戴帽子、撐傘</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>清潔改為溫和胺基酸洗面乳，輕柔清洗</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>保濕繼續維持（新皮角質層薄，保水力弱）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>飲食補充抗氧化物（維他命 C 蔬果、番茄紅素等）</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止日曬——這是 Day 5-7 最核心的戒律</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止任何去角質行為（包含 PHA 這類溫和的也不行）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止立即嘗試美白精華（時機未到，反而刺激嫩皮）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止泡溫泉、游泳（水中氯、礦物質刺激新皮）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d5-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d5-avoid">禁止使用</button>
+              </div>
+              <div id="d5-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水保濕</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">新皮屏障建立</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">舒緩促癒</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">基礎保水 + 輕盈潤澤</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">基礎保水 + 輕盈潤澤</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">促進新皮組織修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">氧化鋅</div><div class="ingredient-en">Zinc Oxide</div></div><div class="ingredient-note">物理防曬成分（無刺激）</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">二氧化鈦</div><div class="ingredient-en">Titanium Dioxide</div></div><div class="ingredient-note">物理防曬成分（無刺激）</div></div>
+                </div>
+              </div>
+              <div id="d5-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">AHA（果酸）</div><div class="ingredient-en">Alpha Hydroxy Acids</div></div><div class="ingredient-note">新皮超敏感期，禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">BHA（水楊酸）</div><div class="ingredient-en">Beta Hydroxy Acid</div></div><div class="ingredient-note">新皮超敏感期，禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">PHA（多羥基酸）</div><div class="ingredient-en">Polyhydroxy Acids</div></div><div class="ingredient-note">新皮超敏感期，禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">新皮禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">左旋維他命 C</div><div class="ingredient-en">L-Ascorbic Acid</div></div><div class="ingredient-note">新皮禁用（可待 Day 7+ 用磷酸衍生物）</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度菸鹼胺（&gt;5%）</div><div class="ingredient-en">Niacinamide &gt;5%</div></div><div class="ingredient-note">先觀察耐受後再使用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">氧苯酮</div><div class="ingredient-en">Oxybenzone</div></div><div class="ingredient-note">改物理性防曬更安全</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甲氧基肉桂酸辛酯</div><div class="ingredient-en">Octinoxate</div></div><div class="ingredient-note">改物理性防曬更安全</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">刺激</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">6</div>
+            <div>
+              <div class="day-title">嫩膚敏感・防曬升級</div>
+              <div class="day-phase">循序漸進</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">脫皮幾乎完全結束，新皮大面積露出，膚感光滑細緻、毛孔縮小、色澤較均勻，換膚效果清晰可見。但此時是皮膚屏障最薄弱的時期——角質層厚度只有正常的 60-70%，對摩擦、溫度、成分的耐受度都顯著低於平日。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>物理防曬繼續嚴守</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>清潔、保濕維持溫和規律</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>若皮膚感覺穩定，可開始試探性加入低濃度菸鹼胺（2-5%），早上使用，觀察有無刺激反應</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>補充飲食中的 Omega-3（深海魚、奇亞籽），協助皮膚脂質修復</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止立即回歸術前所有護膚程序（循序漸進，每次只新增一個成分）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止安排其他雷射、光療或醫美術式（至少間隔 2-4 週以上）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止使用任何酸類</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止日曬、大量出汗的運動</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d6-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d6-avoid">禁止使用</button>
+              </div>
+              <div id="d6-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水保濕</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">持續鞏固屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">舒緩</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（2-5%，試探加入）</div><div class="ingredient-en">Niacinamide 2-5%</div></div><div class="ingredient-note">控色素 + 屏障輔助，低濃度試探</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">輕盈潤澤 + 持續修護</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">輕盈潤澤 + 持續修護</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">葡聚糖</div><div class="ingredient-en">Beta-Glucan</div></div><div class="ingredient-note">強化屏障修護</div></div>
+                </div>
+              </div>
+              <div id="d6-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有果酸</div><div class="ingredient-en">AHA (Glycolic、Lactic Acid)</div></div><div class="ingredient-note">尚未開放</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸</div><div class="ingredient-en">BHA (Salicylic Acid)</div></div><div class="ingredient-note">尚未開放</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">建議 3 週後再評估</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">左旋維他命 C</div><div class="ingredient-en">L-Ascorbic Acid</div></div><div class="ingredient-note">建議 7-10 天後以穩定衍生物取代</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度菸鹼胺（&gt;10%）</div><div class="ingredient-en">Niacinamide &gt;10%</div></div><div class="ingredient-note">新皮敏感期不宜過高</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">刺激 / 誘發過敏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">刺激 / 誘發過敏</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">7</div>
+            <div>
+              <div class="day-title">趨於穩定・定期回診</div>
+              <div class="day-phase">防曬長期堅持</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">皮膚整體趨於穩定，毛孔細緻、膚色均勻、整體光澤感提升，換膚成效已清晰可見。但皮膚屏障雖已大幅恢復，卻還未完全回到術前強度——過早回歸全套高功效保養品是最常見的術後失誤。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>安排術後 7-14 天回診，讓醫師評估恢復狀況並決定下一次換膚時程</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬改為長期習慣（防曬才是換膚效果最強的維持手段）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>逐步重新引入功效保養：Day 7 起低濃度菸鹼胺（5%）→ Day 10 起維他命 C 穩定衍生物 → Day 14-21 起低濃度 A 醇</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>記錄完整術後前後對比照片</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可因效果好就立刻急著安排下一次換膚（間隔不足反而傷皮）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可立即回歸所有高濃度功效保養品（逐步引入，每次只新增一個）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可停止防曬——效果維持與否，防曬是最關鍵的變數</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可安排雷射或其他能量療程（建議至少術後 4 週以上）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d7-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d7-avoid">注意事項</button>
+              </div>
+              <div id="d7-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">持續保濕</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（5%）</div><div class="ingredient-en">Niacinamide 5%</div></div><div class="ingredient-note">控色 + 屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">持續舒緩</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C 穩定衍生物</div><div class="ingredient-en">AA2G、SAP、VC-IP</div></div><div class="ingredient-note">抗氧化美白（穩定無酸性刺激）</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">潤澤</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">氧化鋅</div><div class="ingredient-en">Zinc Oxide</div></div><div class="ingredient-note">長期防曬選擇</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">二氧化鈦</div><div class="ingredient-en">Titanium Dioxide</div></div><div class="ingredient-note">長期防曬選擇</div></div>
+                </div>
+              </div>
+              <div id="d7-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇（高濃度）</div><div class="ingredient-en">Retinol &gt;0.05%</div></div><div class="ingredient-note">建議術後 14-21 天起從低濃度引入</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 AHA（&gt;10%）</div><div class="ingredient-en">Glycolic、Lactic Acid &gt;10%</div></div><div class="ingredient-note">建議術後 2-3 週後，從低濃度開始</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">L-抗壞血酸（&gt;15%）</div><div class="ingredient-en">L-Ascorbic Acid &gt;15%</div></div><div class="ingredient-note">改用穩定衍生物替代</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">建議長期減少使用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance</div></div><div class="ingredient-note">建議長期減少使用</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline -->
+  </div>
+</section>
+</div><!-- /.hero-bg-wrapper -->
+
+<!-- Notes -->
+<div class="notes-section">
+  <div class="container">
+    <h4>術後注意事項</h4>
+    <p>果酸換膚後最常見的後遺症是術後色素沉澱（PIH），主因是術後防曬不足。嚴格防曬 6-8 週是維持換膚成效的核心策略，並非選配。</p>
+    <p>成分重新引入原則：每次只新增一個新成分，連續使用 3-5 天確認無異常後，再引入下一個。不要因為看到效果就同時引入多種功效成分。</p>
+  </div>
+</div>
+
+<!-- Sweep CTA -->
+<div class="cta-bg-wrapper">
+<div class="background-wrapper">
+  <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="soft-blur-cta" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" fill="#FF9A8B"/>
+    <circle class="blob-1" cx="80" cy="20" r="35" fill="#FF6A88" filter="url(#soft-blur-cta)"/>
+    <circle class="blob-2" cx="20" cy="80" r="28" fill="#FF99AC" filter="url(#soft-blur-cta)"/>
+    <circle class="blob blob-3" cx="50" cy="50" r="30" fill="#FF9A8B" filter="url(#soft-blur-cta)"/>
+  </svg>
+</div>
+<section class="sweep-cta">
+  <div class="container">
+    <div class="sweep-cta-inner">
+      <h2>你架上的那些保養品，<br>術後第幾天才能用？</h2>
+      <div class="sweep-cta-benefits">
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>拍照上傳，分辨安全或地雷</span><span>不用自己查成分表。CosKeeper 幫你掃描家中保養品，即時標示哪瓶安全、哪瓶術後要先收起來。</span></div>
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>第幾天能用，AI 幫你算好</span><span>不同療程、不同恢復階段，可以用的成分不一樣。CosKeeper 依照你的療程，告訴你每一瓶的最早開瓶時機。</span></div>
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>每天一則提醒，陪你走完七天</span><span>從術後第一天到第七天，依照當日膚況給你專屬照護重點，讓你每天都知道今天該怎麼做、什麼要特別注意。</span></div>
+      </div>
+      <a href="#" class="btn btn-accent btn-lg">立即掃描，守住醫美效果</a>
+    </div>
+  </div>
+</section>
+</div><!-- /.cta-bg-wrapper -->
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <a href="https://www.coskeeper.com"><img src="../images/Logo_透明背景.png" alt="CosKeeper" style="height:24px;width:auto;margin:0 auto var(--space-sm);"></a>
+    <p>&copy; 2026 CosKeeper by INBORNS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../assets/funnel.js" defer></script>
 </body>
 </html>

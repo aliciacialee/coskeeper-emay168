@@ -3,11 +3,840 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>平頂雷射術後指南 | CosKeeper</title>
+  <title>平頂光束皮秒術後指南 | CosKeeper</title>
   <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .hero-bg-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .background-wrapper {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .guidebook-hero {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-2xl) 0;
+    }
+    .guidebook-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-bg-wrapper .section {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes fluid-blob-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30%, 20%) scale(1.1); }
+      66% { transform: translate(-10%, -15%) scale(0.9); }
+    }
+    @keyframes fluid-blob-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-20%, -30%) scale(0.9); }
+      66% { transform: translate(15%, 10%) scale(1.1); }
+    }
+    @keyframes fluid-blob-3 {
+      0%, 100% { transform: translate(0, 0); }
+      40% { transform: translate(25%, -15%) scale(1.1); }
+      70% { transform: translate(-10%, 10%); }
+    }
+    @keyframes fluid-blob-4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-15%, 25%) scale(0.9, 1.1); }
+    }
+    .blob-1 { animation: fluid-blob-1 15s ease-in-out infinite; }
+    .blob-2 { animation: fluid-blob-2 20s ease-in-out infinite; animation-delay: -5s; }
+    .blob-3 { animation: fluid-blob-3 18s ease-in-out infinite; animation-delay: -2s; }
+    .blob-4 { animation: fluid-blob-4 22s ease-in-out infinite; }
+    .treatment-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: var(--font-bold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: var(--space-md);
+    }
+    .guidebook-hero .treatment-title { color: #FFFFFF; }
+    .guidebook-hero .treatment-desc { color: rgba(255,255,255,0.8); }
+    .guidebook-hero .treatment-tag {
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.15);
+    }
+    .treatment-title {
+      font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+      margin-bottom: var(--space-md);
+    }
+    .treatment-desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-lg);
+    }
+    .treatment-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .treatment-tag {
+      font-size: var(--text-xs);
+      padding: 3px 10px;
+      border: 1px solid var(--border-default);
+      color: var(--text-secondary);
+    }
+    .day-phase {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .skin-status {
+      background: var(--bg-secondary);
+      padding: var(--space-md) var(--space-lg);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+      border-left: 3px solid var(--blue-300);
+    }
+    .day-item[data-phase="sensitive"] .skin-status { border-left-color: var(--light-red); }
+    .day-item[data-phase="caution"]   .skin-status { border-left-color: var(--light-yellow); }
+    .day-item[data-phase="recovery"]  .skin-status { border-left-color: var(--blue-300); }
+    .ingredient-tabs { margin-top: var(--space-md); }
+    .ingredient-tabs .tabs { margin-bottom: var(--space-md); }
+    .ingredient-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .ingredient-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--bg-secondary);
+      gap: var(--space-md);
+    }
+    .ingredient-name {
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      color: var(--text-primary);
+    }
+    .ingredient-en {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .ingredient-note {
+      font-size: var(--text-xs);
+      color: var(--text-secondary);
+      text-align: right;
+      flex-shrink: 0;
+      max-width: 50%;
+      line-height: 1.4;
+    }
+    .notes-section {
+      background: var(--light-yellow-bg);
+      padding: var(--space-xl) 0;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .notes-section h4 {
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--light-yellow);
+      margin-bottom: var(--space-md);
+    }
+    .notes-section p {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-relaxed);
+    }
+    .notes-section p + p { margin-top: var(--space-md); }
+    .cta-bg-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .sweep-cta {
+      position: relative;
+      z-index: 1;
+      padding: var(--space-3xl) 0;
+      text-align: center;
+    }
+    .sweep-cta-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    .sweep-cta h2 {
+      color: #fff;
+      font-size: clamp(var(--text-xl), 5vw, var(--text-2xl));
+      line-height: var(--leading-tight);
+    }
+    .sweep-cta .btn-accent {
+      background: #fff;
+      color: #7A4208;
+      border: 2px solid #C97A1C;
+      box-shadow: none;
+    }
+    .sweep-cta .btn-accent:hover {
+      background: rgba(255,255,255,0.92);
+    }
+    .sweep-cta-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      width: 100%;
+      max-width: 340px;
+    }
+    .sweep-benefit-item {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      row-gap: 4px;
+      column-gap: var(--space-sm);
+      text-align: left;
+    }
+    .sweep-benefit-dot {
+      grid-row: 1;
+      grid-column: 1;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .sweep-benefit-item span:first-of-type {
+      grid-row: 1;
+      grid-column: 2;
+      font-size: var(--text-base);
+      font-weight: var(--font-bold);
+      color: #fff;
+    }
+    .sweep-benefit-item span:last-of-type {
+      grid-row: 2;
+      grid-column: 2;
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.8);
+      line-height: 1.55;
+    }
+  </style>
 </head>
 <body>
 
-<script src="../assets/funnel.js"></script>
+<!-- Header -->
+<header class="page-header">
+  <div class="container">
+    <a href="../guidebook/index.html" class="back-btn">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      返回指南列表
+    </a>
+    <a href="https://www.coskeeper.com"><img src="../images/Logo_透明背景.png" alt="CosKeeper" style="height:24px;width:auto;"></a>
+  </div>
+</header>
+
+<!-- Hero + Day Timeline shared background -->
+<div class="hero-bg-wrapper">
+<div class="background-wrapper">
+  <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="soft-blur" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" fill="#A35C0A"/>
+    <circle class="blob-1" cx="20" cy="20" r="30" fill="#7A4208" filter="url(#soft-blur)"/>
+    <circle class="blob-2" cx="80" cy="80" r="25" fill="#C97A1C" filter="url(#soft-blur)"/>
+    <circle class="blob-3" cx="10" cy="85" r="28" fill="#A35C0A" filter="url(#soft-blur)"/>
+    <circle class="blob-4" cx="65" cy="30" r="22" fill="#E89C3A" filter="url(#soft-blur)"/>
+  </svg>
+</div>
+
+<!-- Hero -->
+<section class="guidebook-hero">
+  <div class="container">
+    <p class="treatment-eyebrow">術後照護指南</p>
+    <h1 class="treatment-title">平頂光束皮秒<br>七日照護</h1>
+    <p class="treatment-desc">均勻平頂能量打散黑色素顆粒，表皮完整、無結痂——這是五種療程中恢復最快的一種。但黑斑在術後會暫時加深，這是黑色素被打散後碎片代謝前的正常氧化反應，不代表療程失敗。防曬是維持所有效果的最關鍵變數。</p>
+    <div class="treatment-tags">
+      <span class="treatment-tag">皮秒雷射平頂光束手具</span>
+      <span class="treatment-tag">Flat-top Picosecond</span>
+    </div>
+  </div>
+</section>
+
+<!-- Day Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+
+      <!-- Day 1 -->
+      <div class="day-item" data-phase="sensitive">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge sensitive">1</div>
+            <div>
+              <div class="day-title">急性發炎期・黑斑暫深</div>
+              <div class="day-phase">零刺激守則</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">施術後數小時內，治療部位出現明顯泛紅、輕度腫脹與溫熱感，毛孔暫時看起來略為明顯（表面角質受到瞬間震波影響的正常反應）。最讓人措手不及的是：原本的黑斑或色斑在術後數小時至一天內顏色明顯加深，呈深棕色至近黑色。這稱為「術後即時氧化反應（Post-treatment oxidation）」，是黑色素被打散後碎片在代謝前的暫時性聚集現象，不代表療程無效，更不代表黑色素增加。此時角質層短暫通透性升高，任何刺激性成分的傷害也因此放大。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>以溫涼清水或生理食鹽水輕輕沖洗，以指腹輕推，不可搓揉</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>清潔後立即（30秒內）塗抹保濕修護品，不讓皮膚「裸露」</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>塗抹物理性防曬（氧化鋅 / 二氧化鈦成分），即使在室內也建議使用，因螢幕藍光與散射光都可能刺激敏感狀態的皮膚</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>使用乾淨冷水紗布（非冰塊）輕敷患部 15 分鐘，每次冷敷中間休息，緩解溫熱感與腫脹</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>睡前墊高頭部（加一個枕頭），縮短腫脹期</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>充足飲水，補充蛋白質（雞蛋、豆腐、魚），從內部支援修復</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁熱水洗臉、蒸臉（升溫加劇炎症）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁任何含酸類、A 醇、高濃度維他命 C 的保養品</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁上妝，包含氣墊、粉底、隔離霜</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁拍打、按摩或任何臉部導入儀器</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁日曬及長時間強光環境</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁飲酒（血管擴張延長泛紅時間）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁激烈運動、大量流汗</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁自行判斷黑斑加深為異常而使用美白產品</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d1-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d1-avoid">禁止使用</button>
+              </div>
+              <div id="d1-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸（多分子量）</div><div class="ingredient-en">Hyaluronic Acid (Multi-weight)</div></div><div class="ingredient-note">深層至表層全面補水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">溫和吸濕保水，零刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取（CICA）</div><div class="ingredient-en">Centella Asiatica Extract (CICA)</div></div><div class="ingredient-note">舒緩消炎，促進修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">馬德卡索苷</div><div class="ingredient-en">Madecassoside</div></div><div class="ingredient-note">積雪草精華活性成分，消炎促癒</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">亞洲苷</div><div class="ingredient-en">Asiaticoside</div></div><div class="ingredient-note">積雪草精華活性成分，促進膠原合成</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇（維生素 B5）</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">修復組織、舒緩刺激感</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">尿囊素</div><div class="ingredient-en">Allantoin</div></div><div class="ingredient-note">舒緩抗敏，加速皮膚癒合</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺 1, 3, 6-II</div><div class="ingredient-en">Ceramide 1, 3, 6-II</div></div><div class="ingredient-note">補充術後短暫流失的脂質屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">天然抗炎，舒緩泛紅</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">葡聚糖</div><div class="ingredient-en">Beta-Glucan</div></div><div class="ingredient-note">成膜保護，調節免疫反應</div></div>
+                </div>
+              </div>
+              <div id="d1-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有 AHA 果酸</div><div class="ingredient-en">Glycolic Acid、Lactic Acid、Mandelic Acid</div></div><div class="ingredient-note">角質溶解刺激已通透的皮膚</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸（BHA）</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">同上，具溶脂性加重刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">加速代謝干擾術後修復時序</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 酸（維A酸）</div><div class="ingredient-en">Tretinoin</div></div><div class="ingredient-note">加速代謝干擾術後修復時序</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">左旋維他命 C（高濃度）</div><div class="ingredient-en">L-Ascorbic Acid >5%</div></div><div class="ingredient-note">酸性 pH 環境刺激通透皮膚</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">變性酒精</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥刺激，破壞屏障脂質</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">誘發接觸性過敏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">精油</div><div class="ingredient-en">Essential Oils</div></div><div class="ingredient-note">光敏感，術後禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">薄荷醇</div><div class="ingredient-en">Menthol</div></div><div class="ingredient-note">刺激敏感神經末梢</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">樟腦</div><div class="ingredient-en">Camphor</div></div><div class="ingredient-note">刺激敏感神經末梢</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">過氧化苯甲醯</div><div class="ingredient-en">Benzoyl Peroxide</div></div><div class="ingredient-note">高刺激氧化劑，術後禁用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">物理磨砂顆粒</div><div class="ingredient-en">Physical Scrub Beads</div></div><div class="ingredient-note">機械性傷害，術後禁用</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-item" data-phase="sensitive">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge sensitive">2</div>
+            <div>
+              <div class="day-title">泛紅消退・黑斑最深</div>
+              <div class="day-phase">保濕防曬優先</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">泛紅感大幅改善，腫脹消退，整體皮膚觸感回到接近正常。然而黑斑的顏色在 Day 1–2 通常達到最深——這是氧化反應的高峰，色斑可能比術前深 1–2 個色階。此現象是正常代謝過程的一部分：打散的黑色素碎片在被巨噬細胞清除之前，會暫時聚集在表皮層，呈現較深的視覺效果。Day 2–3 是心理壓力最大的時期，請建立正確預期：這不是色素沉澱，而是即將被清除的黑色素正在排隊等待代謝。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>保濕頻率維持一天三次（早、中、晚），不等到乾了才補</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>使用溫和無起泡的胺基酸洗面乳，以指腹輕推，充分以水沖洗後輕按吸乾</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>物理性防曬升級為 SPF50+，室外每 2 小時補擦，加戴帽子</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>室內可使用加濕器維持環境濕度 50–60%，降低皮膚失水速率（TEWL）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>充足睡眠（夜間生長激素分泌促進皮膚修復）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>拍攝 Day 2 膚況照片，記錄黑斑最深的基準點，方便後續對比</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁任何去角質行為（化學性、物理性均禁）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁使用洗臉刷、洗臉機等震動清潔工具</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁蒸臉或熱敷</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁上妝（若工作必要，僅可使用礦物粉底輕薄塗抹，回家立即溫和卸除）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁飲酒、辛辣刺激性食物（加劇血管擴張）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁因黑斑加深而自行使用美白產品——此時使用高濃度酸性美白成分，反而可能刺激皮膚誘發真正的 PIH</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d2-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d2-avoid">禁止使用</button>
+              </div>
+              <div id="d2-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水保濕核心</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障修復持續進行</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">基礎保水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica Extract</div></div><div class="ingredient-note">舒緩消炎</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇（維生素 B5）</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">組織修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">燕麥膠</div><div class="ingredient-en">Colloidal Oatmeal</div></div><div class="ingredient-note">舒緩，輔助屏障成膜</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">尿囊素</div><div class="ingredient-en">Allantoin</div></div><div class="ingredient-note">促進細胞修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">輕盈補脂，不致粉刺</div></div>
+                </div>
+              </div>
+              <div id="d2-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有 AHA 果酸</div><div class="ingredient-en">Glycolic Acid、Lactic Acid、Mandelic Acid</div></div><div class="ingredient-note">屏障尚未完全修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸（BHA）</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">同上</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">同上</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度維他命 C（>5%）</div><div class="ingredient-en">L-Ascorbic Acid >5%</div></div><div class="ingredient-note">酸性環境刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">誘發過敏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度菸鹼胺（>5%）</div><div class="ingredient-en">Niacinamide >5%</div></div><div class="ingredient-note">Day 2 仍建議暫緩</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-item" data-phase="caution">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge caution">3</div>
+            <div>
+              <div class="day-title">黑斑代謝啟動・靜待自然</div>
+              <div class="day-phase">禁止人為介入</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">泛紅幾乎完全消退，黑斑顏色開始從最深點逐漸往外圍淡化，中心仍深但邊緣可能已出現輕微色差——這是黑色素碎片被巨噬細胞清除的開始，是療程真正起效的視覺訊號。部分人在 Day 3 可能感覺皮膚輕微乾燥或緊繃。此時心理上最容易犯的錯誤是：覺得「好像在淡化了，要不要加速一下」——任何試圖「加速代謝」的行為（去角質、高濃度酸類、磨砂）都可能破壞已啟動的代謝節奏，反而引發 PIH。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>繼續充分保濕（早中晚三次）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>物理性防曬持續（室外加帽加傘，雙重防護）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>若使用低刺激片狀保濕面膜（成分溫和、無酸類、無酒精），可每天 10–15 分鐘補水，但避免使用有黏貼張力的撕拉式面膜</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>記錄 Day 3 照片，與 Day 1、Day 2 對比，確認黑斑是否開始有淡化趨勢</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可開始考慮加入低濃度菸鹼胺（2–5%），早上使用，觀察是否有刺激反應</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁任何形式的去角質——即使感覺皮膚有點粗，也不行</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁使用磨砂膏、果酸換膚、去角質棉片</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁大力搓洗臉部</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁泡溫泉、游泳（池水氯 + 雜菌直接接觸敏感皮膚）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁因黑斑仍深就放棄或使用任何高強度美白配方</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d3-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d3-avoid">禁止使用</button>
+              </div>
+              <div id="d3-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水促代謝環境</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取（CICA）</div><div class="ingredient-en">Centella Asiatica (CICA)</div></div><div class="ingredient-note">舒緩消炎</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障保護</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">泛醇（維生素 B5）</div><div class="ingredient-en">Panthenol</div></div><div class="ingredient-note">組織修復</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">基礎保水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">尿囊素</div><div class="ingredient-en">Allantoin</div></div><div class="ingredient-note">舒緩敏感</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度菸鹼胺（2–5%，試探）</div><div class="ingredient-en">Niacinamide 2–5%</div></div><div class="ingredient-note">協助抑制黑色素轉移，低濃度先測試</div></div>
+                </div>
+              </div>
+              <div id="d3-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">AHA 果酸（所有種類）</div><div class="ingredient-en">Glycolic Acid、Lactic Acid、Mandelic Acid</div></div><div class="ingredient-note">干擾正常代謝節奏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">加速代謝干擾自然時序</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">加速代謝干擾自然時序</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度維他命 C（>10%）</div><div class="ingredient-en">L-Ascorbic Acid >10%</div></div><div class="ingredient-note">刺激薄弱屏障</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">誘發過敏</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">物理磨砂顆粒</div><div class="ingredient-en">Physical Scrub</div></div><div class="ingredient-note">機械性傷害</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-item" data-phase="caution">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge caution">4</div>
+            <div>
+              <div class="day-title">黑斑持續淡化・保濕促代謝</div>
+              <div class="day-phase">謹慎維持</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">黑斑持續向外圍淡化，中心色深但整體範圍縮小或顏色層次感改變，部分人在 Day 4 已明顯感受到黑斑「沒那麼可怕了」。皮膚屏障恢復至接近正常水平，觸感回到平滑，泛紅完全消退。黑色素的代謝週期通常需要 2–4 週才能完整完成，Day 4 看到的改善只是代謝進行中的中段結果，不是最終效果。此時是「恢復正常保養節奏」的過渡期，但引入功效性成分仍需謹慎循序。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>保濕節奏維持，可開始使用片狀面膜（成分溫和者）補充密集水分</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>物理性防曬持續，戶外 SPF50+，每 2 小時補擦</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>菸鹼胺若 Day 3 試探無異常，可正式納入早晨保養，濃度維持 5% 以下</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可考慮晚間加入維他命 C 穩定衍生物（AA2G、SAP、VC-IP），協助抗氧化，避免刺激性的 L-抗壞血酸</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>記錄 Day 4 照片，持續追蹤黑斑淡化進度</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>仍禁止任何酸類去角質（包含 PHA 多羥基酸，此時也建議再等待）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止 A 醇（建議術後至少 1 週後再評估）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止高濃度 L-抗壞血酸（>10%，改用穩定衍生物取代）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止日曬——此階段黑色素代謝中的碎片若再次受到 UV 刺激，代謝效率大幅下降，且 PIH 風險急升</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d4-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d4-avoid">禁止使用</button>
+              </div>
+              <div id="d4-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">補水保濕</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障持續鞏固</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（5%）</div><div class="ingredient-en">Niacinamide 5%</div></div><div class="ingredient-note">抑制黑色素轉移，協助均色</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C 穩定衍生物</div><div class="ingredient-en">AA2G、SAP、VC-IP</div></div><div class="ingredient-note">晚間抗氧化，無酸性刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">持續消炎促代謝</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">甘油</div><div class="ingredient-en">Glycerin</div></div><div class="ingredient-note">基礎保水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">輕盈補脂，不致粉刺</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">乳木果油</div><div class="ingredient-en">Shea Butter</div></div><div class="ingredient-note">滋潤修護，屏障強化</div></div>
+                </div>
+              </div>
+              <div id="d4-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">所有 AHA 果酸</div><div class="ingredient-en">Glycolic Acid、Lactic Acid</div></div><div class="ingredient-note">尚未開放</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">水楊酸（BHA）</div><div class="ingredient-en">Salicylic Acid</div></div><div class="ingredient-note">尚未開放</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">PHA 多羥基酸</div><div class="ingredient-en">Gluconolactone、Lactobionic Acid</div></div><div class="ingredient-note">即使溫和，Day 4 仍建議等待</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇</div><div class="ingredient-en">Retinol</div></div><div class="ingredient-note">建議 Day 7 後評估</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">L-抗壞血酸（>10%）</div><div class="ingredient-en">L-Ascorbic Acid >10%</div></div><div class="ingredient-note">改用穩定衍生物取代</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">乾燥刺激</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">誘發過敏</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">5</div>
+            <div>
+              <div class="day-title">新皮穩定・功效漸回</div>
+              <div class="day-phase">防曬升級</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">皮膚整體已大幅穩定，屏障功能完整恢復，TEWL 回到正常基準值。黑斑在多數人身上已明顯比術前淡化，部分人甚至在 Day 5 就看到顯著改善——但完整的效果需要 2–4 週後才能真正評估，此時看到的是「代謝中段」的成果。皮膚對功效性保養品的耐受度已大幅提升，可以逐步重建術前的功效保養節奏，但仍以「逐一引入、觀察後再加」為原則。防曬在此階段升級至最高標準，一次防曬疏忽可能讓代謝中的碎片再次被活化，引發 PIH。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬升級至 SPF50+/PA++++ 物理性防曬，戶外每 2 小時補擦，加戴帽子、遮陽傘</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>溫和洗臉（胺基酸潔面乳）已可正常使用，無需特別輕柔</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>保濕節奏維持（早晚）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可在晚間試探性引入低濃度果酸（如 Lactic Acid 5%，每週 2 次），觀察是否有刺激反應</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>菸鹼胺可提升至 5%，若耐受良好，早晚均可使用</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>維他命 C 穩定衍生物繼續使用</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁日曬——這是 Day 5–7 最核心的禁令，沒有之一</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止 A 醇（建議術後 7 天後再評估是否引入）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止高濃度果酸換膚（>15%）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止高濃度 L-抗壞血酸（>15%）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止任何物理磨砂去角質</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止雷射、光療、電波等能量療程（建議間隔至少 2 週以上）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d5-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d5-avoid">禁止使用</button>
+              </div>
+              <div id="d5-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">持續補水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障長期維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（5%）</div><div class="ingredient-en">Niacinamide 5%</div></div><div class="ingredient-note">控色素 + 屏障輔助</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C 穩定衍生物</div><div class="ingredient-en">AA2G、SAP、VC-IP</div></div><div class="ingredient-note">抗氧化美白</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度乳酸（5%，晚間試探）</div><div class="ingredient-en">Low-conc. Lactic Acid</div></div><div class="ingredient-note">溫和代謝輔助，試探性引入</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">持續舒緩促代謝</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">補脂</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">氧化鋅</div><div class="ingredient-en">Zinc Oxide</div></div><div class="ingredient-note">物理性防曬，新皮首選</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">二氧化鈦</div><div class="ingredient-en">Titanium Dioxide</div></div><div class="ingredient-note">物理性防曬，新皮首選</div></div>
+                </div>
+              </div>
+              <div id="d5-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇（高濃度 >0.05%）</div><div class="ingredient-en">Retinol >0.05%</div></div><div class="ingredient-note">建議 Day 7 後從低濃度開始評估</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 AHA（>15%）</div><div class="ingredient-en">Glycolic Acid、Lactic Acid >15%</div></div><div class="ingredient-note">尚未建議恢復換膚強度</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 L-抗壞血酸（>15%）</div><div class="ingredient-en">L-Ascorbic Acid >15%</div></div><div class="ingredient-note">繼續使用穩定衍生物</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度水楊酸（>2%）</div><div class="ingredient-en">Salicylic Acid >2%</div></div><div class="ingredient-note">建議 Day 7 後評估</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">持續建議避免</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">持續建議避免</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">精油</div><div class="ingredient-en">Essential Oils</div></div><div class="ingredient-note">持續建議避免</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">6</div>
+            <div>
+              <div class="day-title">效果鞏固・循序功效</div>
+              <div class="day-phase">防曬長期</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">皮膚完全穩定，黑斑改善清晰可見，整體膚色均勻度提升，毛孔視覺上較術前細緻。此時屏障完整性完全恢復，對外界刺激的耐受度已接近術前水平。多數人的黑斑在 Day 6 已有顯著淡化（比術前淡 30–60%），但完整效果仍未到位——黑色素碎片的清除和皮膚代謝週期的完整循環，通常在術後 2–4 週才真正結束。幾乎可以恢復術前全部保養程序，但功效性成分仍以「逐一確認耐受」為原則。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>防曬長期維持（防曬是維持所有療程效果最關鍵的單一習慣）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>若 Day 5 低濃度乳酸試探無異常，可提高頻率至每週 3 次</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>可開始評估是否引入低濃度 A 醇（0.025%，每週 2 次，晚間）</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>記錄 Day 6 照片，準備回診對比</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>尚未建議：高濃度 A 醇（>0.1%）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>尚未建議：換膚級高濃度 AHA（>20%）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>嚴禁日曬——即使屏障已完整，術後 PIH 的黃金高風險窗口仍延伸至 4–6 週</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>禁止同時引入多種新功效成分（一次只新增一個，觀察 3–5 天後再加下一個）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d6-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d6-avoid">禁止使用</button>
+              </div>
+              <div id="d6-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">持續補水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障長期鞏固</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（5–10%）</div><div class="ingredient-en">Niacinamide 5–10%</div></div><div class="ingredient-note">控色 + 毛孔維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C 穩定衍生物</div><div class="ingredient-en">AA2G、SAP、VC-IP</div></div><div class="ingredient-note">抗氧化美白</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度乳酸（5–8%，每週 3 次）</div><div class="ingredient-en">Lactic Acid 5–8%</div></div><div class="ingredient-note">溫和代謝維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度 A 醇（0.025%，試探）</div><div class="ingredient-en">Retinol 0.025%</div></div><div class="ingredient-note">若 Day 5 後耐受確認，可試探引入</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">積雪草萃取</div><div class="ingredient-en">Centella Asiatica</div></div><div class="ingredient-note">持續舒緩</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">角鯊烷</div><div class="ingredient-en">Squalane</div></div><div class="ingredient-note">補脂</div></div>
+                </div>
+              </div>
+              <div id="d6-avoid" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 AHA（>20%）</div><div class="ingredient-en">Glycolic Acid >20%</div></div><div class="ingredient-note">術後 7 天內不建議恢復換膚強度</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 A 醇（>0.1%）</div><div class="ingredient-en">Retinol >0.1%</div></div><div class="ingredient-note">建議 Day 7 後才考慮</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 L-抗壞血酸（>15%）</div><div class="ingredient-en">L-Ascorbic Acid >15%</div></div><div class="ingredient-note">維持穩定衍生物</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">長期建議減少使用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">長期建議減少使用</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-item" data-phase="recovery">
+        <div class="day-header">
+          <div class="day-number">
+            <div class="day-badge recovery">7</div>
+            <div>
+              <div class="day-title">趨於穩定・防曬不停</div>
+              <div class="day-phase">安排回診</div>
+            </div>
+          </div>
+          <svg class="day-chevron" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="day-body">
+          <div>
+            <p class="day-section-title">膚況</p>
+            <div class="skin-status">皮膚完全恢復穩定，黑斑已清晰改善，膚色均勻度、毛孔細緻度的提升效果可以初步評估。但這只是 Day 7 的成果，不是最終效果。完整的黑色素代謝需要 2–4 週，部分人甚至在術後第 3–4 週才感受到改善最明顯的時刻。如果看到效果有限，不代表療程失敗——而是代謝還在進行中。Day 7 是安排回診讓醫師評估修復狀況與後續療程節奏的好時機，並正式建立術後長期防曬習慣。</div>
+          </div>
+          <div>
+            <p class="day-section-title">應該做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>安排術後 7–14 天回診，讓醫師評估膚況與後續療程間隔規劃；攜帶術前術後照片供對比</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>建立長期防曬習慣（SPF50+，室外每 2 小時補擦）——防曬是所有雷射療程效果維持的最關鍵單一變數</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>成分重新引入路線圖：Day 7 起菸鹼胺 5–10% + 維他命 C 穩定衍生物 → Day 7–10 低濃度乳酸（5–8%，每週 3 次）→ Day 10–14 低濃度 A 醇（0.025%，每週 2 次）→ Day 14+ 視回診結果調整</span></li>
+              <li class="day-checklist-item"><span class="icon-do">✓</span><span>持續記錄膚況照片，作為療程效果評估的客觀依據</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="day-section-title">不能做</p>
+            <ul class="day-checklist">
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可因效果好就立刻安排高強度密集補打（間隔不足反而傷皮）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可立刻回歸所有高強度功效保養（一次只新增一個成分，觀察 3–5 天後再加下一個）</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可停止防曬——術後 4–8 週是 PIH 最容易被誘發的高風險窗口</span></li>
+              <li class="day-checklist-item"><span class="icon-dont">✕</span><span>不可安排其他雷射或能量療程（建議間隔至少 4 週，具體以醫師建議為準）</span></li>
+            </ul>
+          </div>
+          <div class="ingredient-tabs">
+            <p class="day-section-title">成分指引</p>
+            <div data-tab-group>
+              <div class="tabs">
+                <button class="tab-btn" data-tab="d7-safe">適合使用</button>
+                <button class="tab-btn" data-tab="d7-await">尚未建議</button>
+              </div>
+              <div id="d7-safe" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">玻尿酸</div><div class="ingredient-en">Hyaluronic Acid</div></div><div class="ingredient-note">持續補水</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">神經醯胺</div><div class="ingredient-en">Ceramide</div></div><div class="ingredient-note">屏障長期維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">菸鹼胺（5–10%）</div><div class="ingredient-en">Niacinamide</div></div><div class="ingredient-note">控色素 + 毛孔長期維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">維他命 C 穩定衍生物</div><div class="ingredient-en">AA2G、SAP、VC-IP</div></div><div class="ingredient-note">長期抗氧化美白</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度乳酸（5–8%，每週 3 次）</div><div class="ingredient-en">Lactic Acid</div></div><div class="ingredient-note">定期代謝維持</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">低濃度 A 醇（0.025%，Day 10 後）</div><div class="ingredient-en">Retinol 0.025%</div></div><div class="ingredient-note">從低濃度開始重新引入</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">氧化鋅</div><div class="ingredient-en">Zinc Oxide</div></div><div class="ingredient-note">物理性防曬，長期首選</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">二氧化鈦</div><div class="ingredient-en">Titanium Dioxide</div></div><div class="ingredient-note">物理性防曬，長期首選</div></div>
+                </div>
+              </div>
+              <div id="d7-await" class="tab-panel">
+                <div class="ingredient-list">
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 AHA（>10%）</div><div class="ingredient-en">Glycolic Acid、Lactic Acid >10%</div></div><div class="ingredient-note">術後 2 週後，從低濃度重新引入</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">A 醇（>0.05%）</div><div class="ingredient-en">Retinol >0.05%</div></div><div class="ingredient-note">術後 2 週後，視耐受逐步提升</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">高濃度 L-抗壞血酸（>15%）</div><div class="ingredient-en">L-Ascorbic Acid >15%</div></div><div class="ingredient-note">繼續使用穩定衍生物；或術後 4 週後評估</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">換膚級高濃度酸（>20%）</div><div class="ingredient-en">Glycolic Acid >20%</div></div><div class="ingredient-note">術後 4 週後，以醫師評估為準</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">酒精（變性酒精）</div><div class="ingredient-en">Alcohol Denat.</div></div><div class="ingredient-note">長期建議減少使用</div></div>
+                  <div class="ingredient-row"><div><div class="ingredient-name">香料</div><div class="ingredient-en">Fragrance (Parfum)</div></div><div class="ingredient-note">長期建議減少使用</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline -->
+  </div>
+</section>
+</div><!-- /.hero-bg-wrapper -->
+
+<!-- Notes -->
+<div class="notes-section">
+  <div class="container">
+    <h4>術後注意事項</h4>
+    <p>平頂皮秒術後最常見的後遺症是<b>術後色素沉澱（PIH）</b>，主要成因是術後防曬不足，而非療程本身的問題。好發族群：膚色較深（Fitzpatrick III–VI）、有色素沉澱既往史、術後防曬不足者。術後至少 4–6 週嚴格防曬是所有實證醫學文獻共識的核心建議。PIH 一旦形成，通常需要 3–6 個月才能自然淡化。</p>
+    <p>黑斑暫時加深是正常的術後即時氧化反應，不是療程失敗的跡象。Day 1–2 最深，Day 3 起開始從外圍淡化，完整效果要在術後 2–4 週才能真正評估。<b>任何加速代謝的行為（去角質、高濃度酸類）都可能破壞已啟動的代謝節奏，反而引發 PIH</b>，請耐心靜待自然代謝。</p>
+    <p>成分重新引入路線圖：Day 7 菸鹼胺 5% + 維他命 C 穩定衍生物 → Day 7–10 低濃度乳酸（5–8%，每週 3 次）→ Day 10–14 低濃度 A 醇（0.025%，每週 2 次）→ Day 14+ 依回診結果與醫師建議調整。<b>每次只新增一個成分</b>，觀察 3–5 天確認無異常後再引入下一個。</p>
+  </div>
+</div>
+
+<!-- Sweep CTA -->
+<div class="cta-bg-wrapper">
+<div class="background-wrapper">
+  <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="soft-blur-cta" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" />
+      </filter>
+    </defs>
+    <rect width="100" height="100" fill="#A35C0A"/>
+    <circle class="blob-1" cx="80" cy="20" r="35" fill="#7A4208" filter="url(#soft-blur-cta)"/>
+    <circle class="blob-2" cx="20" cy="80" r="28" fill="#C97A1C" filter="url(#soft-blur-cta)"/>
+    <circle class="blob-3" cx="50" cy="50" r="30" fill="#E89C3A" filter="url(#soft-blur-cta)"/>
+  </svg>
+</div>
+<section class="sweep-cta">
+  <div class="container">
+    <div class="sweep-cta-inner">
+      <h2>你架上的那些保養品，<br>術後第幾天才能用？</h2>
+      <div class="sweep-cta-benefits">
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>拍照上傳，分辨安全或地雷</span><span>不用自己查成分表。CosKeeper 幫你掃描家中保養品，即時標示哪瓶安全、哪瓶術後要先收起來。</span></div>
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>第幾天能用，AI 幫你算好</span><span>不同療程、不同恢復階段，可以用的成分不一樣。CosKeeper 依照你的療程，告訴你每一瓶的最早開瓶時機。</span></div>
+        <div class="sweep-benefit-item"><div class="sweep-benefit-dot"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>每天一則提醒，陪你走完七天</span><span>從術後第一天到第七天，依照當日膚況給你專屬照護重點，讓你每天都知道今天該怎麼做、什麼要特別注意。</span></div>
+      </div>
+      <a href="#" class="btn btn-accent btn-lg">立即掃描，守住醫美效果</a>
+    </div>
+  </div>
+</section>
+</div><!-- /.cta-bg-wrapper -->
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <a href="https://www.coskeeper.com"><img src="../images/Logo_透明背景.png" alt="CosKeeper" style="height:24px;width:auto;margin:0 auto var(--space-sm);"></a>
+    <p>&copy; 2026 CosKeeper by INBORNS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../assets/funnel.js" defer></script>
 </body>
 </html>
